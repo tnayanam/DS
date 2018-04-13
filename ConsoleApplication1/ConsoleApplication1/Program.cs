@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿// Find duplicate enteries in a String
+using System.Collections.Generic;
 
 namespace ConsoleApplication1
 {
@@ -14,9 +15,9 @@ namespace ConsoleApplication1
         {
             Dictionary<char, int> dict = new Dictionary<char, int>();
 
-            foreach (var c in str)
+            foreach (var c in str) // O(N)
             {
-                if (dict.ContainsKey(c))
+                if (dict.ContainsKey(c)) // Dictionary cannot have duplicate keys, So we need to put this check and also then we can increment the value instead of adding s duplicate key which will throw the exception.
                 {
                     dict[c] = dict[c] + 1;
                 }
