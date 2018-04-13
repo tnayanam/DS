@@ -1,4 +1,4 @@
-﻿// Palindrome
+﻿// Anagram
 using System.Collections.Generic;
 
 namespace ConsoleApplication1
@@ -7,37 +7,59 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            string str = "Hellolle";
-            bool isPalindrome = checkPalin(str);
+            //string str1 = "Listen";
+            //string str2 = "Silent";
 
-            System.Console.WriteLine("Palindrome: " + isPalindrome);
+            //string str1 = "Rooo";
+            //string str2 = "ooR";
+
+            string str1 = "Lisn";
+            string str2 = "Sile";
+
+
+            bool isAnagram = checkAnagram(str1.ToUpper(), str2.ToUpper());
+
+            System.Console.WriteLine("Palindrome: " + isAnagram);
         }
 
-        public static bool checkPalin(string str)
+        public static bool checkAnagram(string str1, string str2)
         {
-            try
-            {
-                var len = str.Length;
 
-                for (int i = 0; i < len / 2; i++)
-                {
-                    if (str[i] != str[len - i - 1])
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        continue;
-                    }
-                }
-                return true;
-            }
-            catch (System.Exception)
-            {
-                // handle execption there for string null type
+            if (str1 == null || str2 == null)
                 return false;
+
+            if (str1.Length != str2.Length)
+                return false;
+
+            Dictionary<char, int> dict = new Dictionary<char, int>();
+            foreach (var c in str1)
+            {
+                if (dict.ContainsKey(c))
+                {
+                    dict[c] = dict[c] + 1;
+                }
+                else
+                {
+                    dict[c] = 1;
+                }
             }
 
+            foreach (var c in str2)
+            {
+                if (dict.ContainsKey(c))
+                {
+                    dict[c] = dict[c] - 1;
+                }
+                else
+                    return false;
+            }
+
+            foreach(var c in dict)
+            {
+                if (c.Value > 0)
+                    return false;
+            }
+            return true;
         }
     }
 }
