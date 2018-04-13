@@ -1,4 +1,4 @@
-﻿// Find duplicate enteries in a String
+﻿// Remove duplicate
 using System.Collections.Generic;
 
 namespace ConsoleApplication1
@@ -7,11 +7,12 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            var str = "Enginner ROom";
-            printDupe(str.ToUpper());
+            var str = "Google";
+            RemoveDupe(str);
+            RemoveDupe1(str);
         }
 
-        public static void printDupe(string str)
+        public static void RemoveDupe(string str)
         {
             Dictionary<char, int> dict = new Dictionary<char, int>();
 
@@ -26,12 +27,30 @@ namespace ConsoleApplication1
                     dict.Add(c, 1);
                 }
             }
+            string str1 = "";
 
             foreach (var f in dict)
             {
-                if (f.Value > 1)
-                    System.Console.WriteLine(f.Key);
+                str1 += f.Key;
             }
+
+            System.Console.WriteLine(str1);
+        }
+
+
+        public static void RemoveDupe1(string str)
+        {
+            string str1 = "";
+
+            foreach (var f in str)
+            {
+                if (str1.IndexOf(f) == -1)  // index  of character which is not there returns -1
+                {
+                    str1 += f;
+                }
+            }
+
+            System.Console.WriteLine(str1);
         }
     }
 }
