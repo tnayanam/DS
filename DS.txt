@@ -1,0 +1,36 @@
+// Dictionary
+A C# Dictionary is a generic data structure added to the .NET Framework in version 2.0. It is a way to store key/value pairs. In contrast, a List (or ArrayList) can only store values.
+Dictionary<string, int> dictionary = new Dictionary<string, int>();
+Adding data to a dictionary is similar to adding values to a List, except that it takes a key and value argument:
+
+dictionary.Add("1", 1);
+Once data is stored inside a C# dictionary, you use the key values as indices to retrieve values. To put it in context, a List uses numbers as keys (indices) to get its values:
+
+int j = dictionary["1"];
+Traversing a dictionary (going through each element) is tricky because the keys can be anything within its data type. The only way to access all the values in a C# dictionary is to know all the keys. That is when the Keys property comes in, which holds a collection of any key added. Here is an example on iterating through a C# dictionary:
+
+List<string> keys = new List<string>(dictionary.Keys);
+for (int i = 0; i < keys.Count; i++)
+{
+    int j = dictionary[keys[i]];
+}
+As mentioned before, the above operations work the same way on a SortedDictionary.
+
+Dictionary vs. SortedDictionary
+The difference between Dictionary and SortedDictionary start with the obvious. A Dictionary keeps elements in the order the were added. Meanwhile a SortedDictionary keeps elements sorted based on their comparer.
+
+For example, adding the following key/value pairs to a Dictionary and then outputting the values in order would yield: (1, 1), (3, 3), (2, 2), (4, 4) -> 1, 3, 2, 4.
+
+Adding the same input to a SortedDictionary would result in 1, 2, 3, 4. So elements are automatically sorted in a SortedDictionary.
+
+The result is advantages and disadvantages for each data structure that have to be considered to choose the best one for a task.
+
+Dictionary
+Two things to consider: insertion time and searching time. Because elements are not automatically sorted, inserting elements is faster.
+
+Similarly because elements are not sorted, it makes searching more complicated, meaning searching is slower.
+
+SortedDictionary
+In a SortedDictionary elements must be sorted when they are added, making insertion times slower.
+
+But since elements are kept stored, searching can be done with binary search, meaning searching is faster.
