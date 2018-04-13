@@ -7,14 +7,14 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            //string str1 = "Listen";
-            //string str2 = "Silent";
+            string str1 = "Listen";
+            string str2 = "Silent";
 
             //string str1 = "Rooo";
             //string str2 = "ooR";
 
-            string str1 = "Lisn";
-            string str2 = "Sile";
+            //string str1 = "Lisn";
+            //string str2 = "Sile";
 
 
             bool isAnagram = checkAnagram(str1.ToUpper(), str2.ToUpper());
@@ -31,33 +31,24 @@ namespace ConsoleApplication1
             if (str1.Length != str2.Length)
                 return false;
 
-            Dictionary<char, int> dict = new Dictionary<char, int>();
-            foreach (var c in str1)
+            int[] arr1 = new int[256];
+            int[] arr2 = new int[256];
+
+            foreach (var c in str1) // at tht ASCII place the value is incremented
             {
-                if (dict.ContainsKey(c))
-                {
-                    dict[c] = dict[c] + 1;
-                }
-                else
-                {
-                    dict[c] = 1;
-                }
+                arr1[c]++;
             }
 
             foreach (var c in str2)
             {
-                if (dict.ContainsKey(c))
-                {
-                    dict[c] = dict[c] - 1;
-                }
-                else
-                    return false;
+                arr2[c]++;
             }
 
-            foreach(var c in dict)
+            for (int i = 0; i < 256; i++)
             {
-                if (c.Value > 0)
-                    return false;
+                if (arr1[i] == arr2[i])
+                    continue;
+                else return false;
             }
             return true;
         }
