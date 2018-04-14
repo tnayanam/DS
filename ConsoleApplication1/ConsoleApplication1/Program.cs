@@ -6,30 +6,21 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            int[] arr = new int[6] { 3, 4, 1, 2, 6, 4 }; // 6,4,3,4,1,2
-            int pivot = 4;
+            int[] arr = new int[5] { 1, 2, 3, 5, 7 }; // 23
 
-            for (int i = 0; i < pivot; i++) // O(pivot*n)
+            int num = 8;
+            for (int i = 0, j = arr.Length - 1; i < j;)
             {
-
-                rotateArrayByOne(ref arr);
+                if (arr[i] + arr[j] == num)
+                {
+                    System.Console.WriteLine("found");
+                    break;
+                }
+                else if (arr[i] + arr[j] > 8)
+                    j--;
+                else
+                    i++;
             }
-            foreach (var ar in arr)
-            {
-                System.Console.WriteLine(ar + " ");
-            }
-
-        }
-
-        public static void rotateArrayByOne(ref int[] arr)
-        {
-            int len = arr.Length;
-            int temp = arr[0];
-            for (int i = 0; i < arr.Length - 1; i++)
-            {
-                arr[i] = arr[i + 1];
-            }
-            arr[len - 1] = temp;
         }
     }
 }
