@@ -1,4 +1,4 @@
-// number of max count in a string
+// Replace space with %20
 
 namespace ConsoleApplication1
 {
@@ -7,23 +7,10 @@ namespace ConsoleApplication1
         static void Main(string[] args)
         {
             string str = "A new worwld";
-            int[] arr = new int[256];
-            int max = 0;
-            char max1 = ' ';
-            foreach (var item in str)
-            {
-                arr[item] = arr[item] + 1;
-            }
+            str = str.Trim();
+            str = str.Replace(" ", "%20");
+            System.Console.WriteLine(str);
 
-            for (int i = 0; i < 256; i++)
-            {
-                if (arr[i] > max)
-                {
-                    max = arr[i];
-                    max1 = (char)i;
-                }
-            }
-            System.Console.WriteLine(max1.ToString());
         }
     }
 }
