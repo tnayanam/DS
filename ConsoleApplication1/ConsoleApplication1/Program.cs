@@ -1,5 +1,5 @@
-// Merge Two Sorted Arrays
-
+// Move all zeroes to the end to the array 
+// time complexity is O(n) space is O(n)
 
 namespace ConsoleApplication1
 {
@@ -7,36 +7,19 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            int[] arr1 = new int[5] { 1, 2, 5, 8, 9 };
-            int[] arr2 = new int[5] { 1, 2, 3,8,10 };
+            int[] arr1 = new int[9] { 0, 0, 1, 0, 2, 5, 8, 9, 0 };
+            int[] arr2 = new int[9];
 
-            int[] arr3 = new int[10];
-
-            for (int i = 0, j = 0, k = 0; i < arr1.Length + arr2.Length; i++)
+            for (int i = 0, j = 0; i < arr1.Length; i++)
             {
-                if (j == arr1.Length)
+                if (arr1[i] > 0)
                 {
-                    arr3[i] = arr2[k];
-                    k++;
-                }
-                else if (k == arr2.Length)
-                {
-                    arr3[i] = arr1[j];
+                    arr2[j] = arr1[i];
                     j++;
-                }
-                else if (arr1[j] <= arr2[k])
-                {
-                    arr3[i] = arr1[j];
-                    j++;
-                }
-                else if (arr1[j] > arr2[k])
-                {
-                    arr3[i] = arr2[k];
-                    k++;
                 }
             }
 
-            foreach (var item in arr3)
+            foreach (var item in arr2)
             {
                 System.Console.WriteLine(item);
             }
