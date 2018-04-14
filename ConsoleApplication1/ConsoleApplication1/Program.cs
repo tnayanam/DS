@@ -1,5 +1,5 @@
 // Move all zeroes to the end to the array 
-// time complexity is O(n) space is O(n)
+// time complexity is O(n) space is O(1)
 
 namespace ConsoleApplication1
 {
@@ -9,12 +9,17 @@ namespace ConsoleApplication1
         {
             int[] arr1 = new int[9] { 0, 0, 1, 0, 2, 5, 8, 9, 0 };
             int[] arr2 = new int[9];
-
-            for (int i = 0, j = 0; i < arr1.Length; i++)
+            int i = 0;
+            int j = 0;
+            while (i < arr1.Length)
             {
-                if (arr1[i] > 0)
+                if (arr1[i] == 0)
+                    i++;
+                else
                 {
                     arr2[j] = arr1[i];
+                    arr1[i] = 0;
+                    i++;
                     j++;
                 }
             }
