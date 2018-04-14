@@ -1,4 +1,4 @@
-// number of word in a string
+// number of max count in a string
 
 namespace ConsoleApplication1
 {
@@ -6,24 +6,24 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            string str = "A new world";
-            bool ot = true;
-
-            int count = 0;
+            string str = "A new worwld";
+            int[] arr = new int[256];
+            int max = 0;
+            char max1 = ' ';
             foreach (var item in str)
             {
-                if (item == ' ')
-                {
-                    ot = true;
-                }
-                else if (ot == true)
-                {
-                    ot = false;
-                    count++;
-                }
+                arr[item] = arr[item] + 1;
             }
 
-            System.Console.WriteLine(count);
+            for (int i = 0; i < 256; i++)
+            {
+                if (arr[i] > max)
+                {
+                    max = arr[i];
+                    max1 = (char)i;
+                }
+            }
+            System.Console.WriteLine(max1.ToString());
         }
     }
 }
