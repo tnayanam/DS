@@ -1,6 +1,5 @@
-// Majority Element
+// Merge Two Sorted Arrays
 
-using System.Collections.Generic;
 
 namespace ConsoleApplication1
 {
@@ -8,22 +7,38 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            int[] arr = new int[5] { 3, 2, 3, 5, 2 };
+            int[] arr1 = new int[5] { 1, 2, 5, 8, 9 };
+            int[] arr2 = new int[5] { 1, 2, 3,8,10 };
 
-            Dictionary<int, int> dict = new Dictionary<int, int>();
+            int[] arr3 = new int[10];
 
-            foreach (var item in arr)
+            for (int i = 0, j = 0, k = 0; i < arr1.Length + arr2.Length; i++)
             {
-                if (dict.ContainsKey(item))
-                    dict[item] += 1;
-                else
-                    dict[item] = 1;
+                if (j == arr1.Length)
+                {
+                    arr3[i] = arr2[k];
+                    k++;
+                }
+                else if (k == arr2.Length)
+                {
+                    arr3[i] = arr1[j];
+                    j++;
+                }
+                else if (arr1[j] <= arr2[k])
+                {
+                    arr3[i] = arr1[j];
+                    j++;
+                }
+                else if (arr1[j] > arr2[k])
+                {
+                    arr3[i] = arr2[k];
+                    k++;
+                }
             }
 
-            foreach (var item in dict)
+            foreach (var item in arr3)
             {
-                if (item.Value > arr.Length / 2)
-                    System.Console.WriteLine("Majority element found: {0}", item.Key);
+                System.Console.WriteLine(item);
             }
         }
     }
