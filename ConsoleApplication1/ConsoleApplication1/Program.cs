@@ -6,10 +6,17 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            string str = "A new worwld";
-            str = str.Trim();
-            str = str.Replace(" ", "%20");
-            System.Console.WriteLine(str);
+            string value = "abab";
+            int cw = 0;
+            for (int i = 1; i < value.Length; i++)
+            {
+                for (int j = 0; j <= value.Length - i; j++)
+                {
+                    System.Console.WriteLine(value.Substring(j, i));
+                }
+            }
+
+            System.Console.WriteLine(cw);
 
         }
     }
