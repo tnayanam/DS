@@ -1,5 +1,7 @@
 ﻿// Remove duplicate
-using System.Collections.Generic;
+
+using System;
+using System.Linq;
 
 namespace ConsoleApplication1
 {
@@ -7,107 +9,21 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            var str = "Google";
-            RemoveDupe(str);
-            RemoveDupe1(str);
-        }
+            string str1 ="silent";
+            string str2 = "listen";
 
-        public static void RemoveDupe(string str)
-        {
-            Dictionary<char, int> dict = new Dictionary<char, int>();
-
-            foreach (var c in str) // O(N)
+            //The author didn't mention anything about case sensitivity. If you want to: .Equals(str2, StringComparison.OrdinalIgnoreCase)
+            if (string.Join("", str1.Reverse()) == str2)
             {
-                if (dict.ContainsKey(c)) // Dictionary cannot have duplicate keys, So we need to put this check and also then we can increment the value instead of adding s duplicate key which will throw the exception.
-                {
-                    dict[c] = dict[c] + 1;
-                }
-                else
-                {
-                    dict.Add(c, 1);
-                }
+                Console.WriteLine(true);
             }
-            string str1 = "";
-
-            foreach (var f in dict)
+            else
             {
-                str1 += f.Key;
+                Console.WriteLine(false);
             }
-
-            System.Console.WriteLine(str1);
-        }
-
-
-        public static void RemoveDupe1(string str)
-        {
-            string str1 = "";
-
-            foreach (var f in str)
-            {
-                if (str1.IndexOf(f) == -1)  // index  of character which is not there returns -1
-                {
-                    str1 += f;
-                }
-            }
-
-            System.Console.WriteLine(str1);
         }
     }
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ----------------------------------------------------------------------------------------------------------------------------------------------------//
-
-//using System.Collections.Generic;
-
-//namespace ConsoleApplication1
-//{
-//    class Program
-//    {
-//        static void Main(string[] args)
-//        {
-//            var str = "Enginner ROom";
-//            printDupe(str.ToUpper());
-//        }
-
-//        public static void printDupe(string str)
-//        {
-//            Dictionary<char, int> dict = new Dictionary<char, int>();
-
-//            foreach (var c in str)
-//            {
-//                if (dict.ContainsKey(c)) // checks if key is already present
-//                {
-//                    dict[c] = dict[c] + 1; // if present then add one to the value
-//                }
-//                else
-//                {
-//                    dict.Add(c, 1); // if first time then simply initialize count to 1
-//                }
-//            }
-
-//            foreach (var d in dict)
-//            {
-//                if (d.Value > 1)
-//                {
-//                    System.Console.WriteLine(d.Key);
-//                }
-//            }
-//        }
-//    }
-//}
