@@ -1,8 +1,7 @@
 // Quick Sort
 // In Place
-// O(nlogn) avergae time conplxity
-// O(n2) worsrt case time coplexity which can be avoided with a doog pivot
-// Not stable
+// o(n)
+
 
 namespace ConsoleApplication1
 {
@@ -11,43 +10,15 @@ namespace ConsoleApplication1
         static void Main(string[] args)
         {
             int[] arr = new int[] { 1, 2, 7, 8, 9, 2, 8, 7 };
-            QuickSort(arr, 0, arr.Length - 1);
+            int ser = 7;
             foreach (var item in arr)
             {
-                System.Console.Write(item);
-            }
-        }
-
-        public static void QuickSort(int[] arr, int start, int end)
-        {
-            if (start >= end) return;
-            else
-            {
-                int pIndex = Partition(arr, start, end);
-                QuickSort(arr, start, pIndex - 1);
-                QuickSort(arr, pIndex + 1, end);
-            }
-        }
-
-        public static int Partition(int[] arr, int start, int end)
-        {
-            int pivot = arr[end];
-            int pIndex = start;
-            for (int i = start; i < end; i++)
-            {
-                if (arr[i] <= pivot)
+                if (item == ser)
                 {
-                    int temp = arr[i];
-                    arr[i] = arr[pIndex];
-                    arr[pIndex] = temp;
-                    pIndex++;
+                    System.Console.WriteLine("found");
+                    break;
                 }
             }
-            int tem = arr[pIndex];
-            arr[pIndex] = arr[end];
-            arr[end] = tem;
-
-            return pIndex;
         }
     }
 }
