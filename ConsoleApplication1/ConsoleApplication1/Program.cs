@@ -1,4 +1,5 @@
 // Code for fibanacci
+// Nth Fibonacci Series
 
 namespace ConsoleApplication1
 {
@@ -6,22 +7,15 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            int len = 6;
-            calFib(len);
+            int len = 5;
+            System.Console.WriteLine(calFib(len));
         }
 
-        public static void calFib(int len)
+        public static int calFib(int len)
         {
-            int n1 = 0; int n2 = 1;
-            if (len < 1)
-                return;
-            for (int i = 0; i < len; i++)
-            {
-                System.Console.WriteLine(n2);
-                int next = n1 + n2;
-                n1 = n2;
-                n2 = next;
-            }
+            if (len <= 1)
+                return len;
+            return calFib(len - 1) + calFib(len - 2);
         }
     }
 }
