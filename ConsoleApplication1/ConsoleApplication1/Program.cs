@@ -1,6 +1,4 @@
-// Quick Sort
-// In Place
-// o(n)
+// BInary search
 
 
 namespace ConsoleApplication1
@@ -9,15 +7,35 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            int[] arr = new int[] { 1, 2, 7, 8, 9, 2, 8, 7 };
-            int ser = 7;
-            foreach (var item in arr)
+            int[] arr = new int[] { 1, 2, 4, 5, 6, 7, 8, 9 };
+            int ser = 3;
+            if (BinSearch(arr, 0, arr.Length - 1, ser))
             {
-                if (item == ser)
-                {
-                    System.Console.WriteLine("found");
-                    break;
-                }
+                System.Console.WriteLine("FOund");
+            }
+            else
+                System.Console.WriteLine("NOt found");
+
+        }
+
+        public static bool BinSearch(int[] arr, int start, int end, int ser)
+        {
+            if (start > end)
+            {
+                return false;
+            }
+            int mid = (start + end) / 2;
+            if (arr[mid] > ser)
+            {
+                return BinSearch(arr, start, mid - 1, ser);
+            }
+            else if (arr[mid] < ser)
+            {
+                return BinSearch(arr, mid + 1, end, ser);
+            }
+            else
+            {
+                return true;
             }
         }
     }
