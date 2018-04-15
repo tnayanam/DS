@@ -1,68 +1,56 @@
-// Merge Sort
+// Quick Sort
+// In Place
+// O(nlogn) avergae time conplxity
+// O(n2) worsrt case time coplexity which can be avoided with a doog pivot
+// Not stable
+
 namespace ConsoleApplication1
 {
     class Program
     {
         static void Main(string[] args)
         {
-            int[] arr = new int[] { 6, 5, 4, 3, 2, 7, 8, 4 };
-            mergeSort(arr, 0, arr.Length - 1);
+            int[] arr = new int[] { 1, 2, 7, 8, 9, 2, 8, 7 };
+            QuickSort(arr, 0, arr.Length - 1);
             foreach (var item in arr)
             {
-                System.Console.WriteLine(item);
+                System.Console.Write(item);
             }
         }
-        public static void merge(int[] arr, int l, int m, int r)
+
+        public static void QuickSort(int[] arr, int start, int end)
         {
-            int i, j, k;
-            int n1 = m - l + 1;
-            int n2 = r - m;
-            int[] L = new int[n1];
-            int[] R = new int[n2];
-            for (i = 0; i < n1; i++)
-                L[i] = arr[l + i];
-            for (j = 0; j < n2; j++)
-                R[j] = arr[m + 1 + j];
-            i = 0; // Initial index of first subarray
-            j = 0; // Initial index of second subarray
-            k = l; // Initial index of merged subarray // because we will have one as sorted.
-            while (i < n1 && j < n2)
+            if (start >= end) return;
+            else
             {
-                if (L[i] <= R[j])
-                {
-                    arr[k] = L[i];
-                    i++;
-                }
-                else
-                {
-                    arr[k] = R[j];
-                    j++;
-                }
-                k++;
-            }
-            while (i < n1)
-            {
-                arr[k] = L[i];
-                i++;
-                k++;
-            }
-            while (j < n2)
-            {
-                arr[k] = R[j];
-                j++;
-                k++;
+                int pIndex = Partition(arr, start, end);
+                QuickSort(arr, start, pIndex - 1);
+                QuickSort(arr, pIndex + 1, end);
             }
         }
-        public static void mergeSort(int[] arr, int l, int r)
+
+        public static int Partition(int[] arr, int start, int end)
         {
-            if (l < r)
+            int pivot = arr[end];
+            int pIndex = start;
+            for (int i = start; i < end; i++)
             {
-                int m = l + (r - l) / 2;
-                mergeSort(arr, l, m);
-                mergeSort(arr, m + 1, r);
-                merge(arr, l, m, r);
+                if (arr[i] <= pivot)
+                {
+                    int temp = arr[i];
+                    arr[i] = arr[pIndex];
+                    arr[pIndex] = temp;
+                    pIndex++;
+                }
             }
+            int tem = arr[pIndex];
+            arr[pIndex] = arr[end];
+            arr[end] = tem;
+
+            return pIndex;
         }
     }
 }
 
+
+// use randomized partition to avoid worst case.
