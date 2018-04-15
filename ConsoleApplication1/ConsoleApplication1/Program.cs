@@ -11,8 +11,7 @@ namespace ConsoleApplication1
             {
                 if (num % i == 0)
                 {
-                    System.Console.WriteLine("Prime");
-                    break;
+                    System.Console.WriteLine("Factor :" + i);
                 }
 
             }
