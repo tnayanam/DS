@@ -1,4 +1,4 @@
-// Swap two numbers w/0 temp
+// Code for fibanacci
 
 namespace ConsoleApplication1
 {
@@ -6,14 +6,22 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            int a = 100;
-            int b = 200;
-            a = a + b;
-            b = a - b;
-            a = a - b;
+            int len = 6;
+            calFib(len);
+        }
 
-            System.Console.WriteLine("a : " + a);
-            System.Console.WriteLine("b : " + b);
+        public static void calFib(int len)
+        {
+            int n1 = 0; int n2 = 1;
+            if (len < 1)
+                return;
+            for (int i = 0; i < len; i++)
+            {
+                System.Console.WriteLine(n2);
+                int next = n1 + n2;
+                n1 = n2;
+                n2 = next;
+            }
         }
     }
 }
