@@ -6,15 +6,16 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            int num = 4;
-            System.Console.WriteLine(calFac(num));
-        }
+            int num = 70;
+            for (int i = 2; i <= num / 2; i++)
+            {
+                if (num % i == 0)
+                {
+                    System.Console.WriteLine("Prime");
+                    break;
+                }
 
-        public static int calFac(int num)
-        {
-            if (num == 1)
-                return 1;
-            return num * calFac(num - 1);
+            }
         }
     }
 }
