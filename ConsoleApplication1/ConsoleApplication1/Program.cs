@@ -1,5 +1,4 @@
-// Ways to clinmb a stair when you can climb 1 or 2 steps.
-// its factorial of steps + 1
+// factorial using recursion
 
 namespace ConsoleApplication1
 {
@@ -7,15 +6,15 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            int len = 4;
-            System.Console.WriteLine(calFib(len + 1));
+            int num = 4;
+            System.Console.WriteLine(calFac(num));
         }
 
-        public static int calFib(int len)
+        public static int calFac(int num)
         {
-            if (len <= 1)
-                return len;
-            return calFib(len - 1) + calFib(len - 2);
+            if (num == 1)
+                return 1;
+            return num * calFac(num - 1);
         }
     }
 }
