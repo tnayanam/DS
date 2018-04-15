@@ -1,4 +1,4 @@
-// BInary search
+// BInary searchO(logn)
 
 
 namespace ConsoleApplication1
@@ -8,21 +8,21 @@ namespace ConsoleApplication1
         static void Main(string[] args)
         {
             int[] arr = new int[] { 1, 2, 4, 5, 6, 7, 8, 9 };
-            int ser = 3;
-            if (BinSearch(arr, 0, arr.Length - 1, ser))
-            {
-                System.Console.WriteLine("FOund");
-            }
+            int ser = 7;
+            int index = BinSearch(arr, 0, arr.Length - 1, ser);
+            if(index ==-1)
+                System.Console.WriteLine("Not FOund");
+            
             else
-                System.Console.WriteLine("NOt found");
+                System.Console.WriteLine("found: " + index);
 
         }
 
-        public static bool BinSearch(int[] arr, int start, int end, int ser)
+        public static int BinSearch(int[] arr, int start, int end, int ser)
         {
             if (start > end)
             {
-                return false;
+                return -1;
             }
             int mid = (start + end) / 2;
             if (arr[mid] > ser)
@@ -35,7 +35,7 @@ namespace ConsoleApplication1
             }
             else
             {
-                return true;
+                return mid;
             }
         }
     }
