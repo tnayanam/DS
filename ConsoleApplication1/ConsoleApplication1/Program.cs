@@ -1,28 +1,58 @@
-
-using System.Collections.Generic;
-
 namespace ConsoleApplication1
 {
+    public class ListNode
+    {
+        public int val;
+        public ListNode next;
+        public ListNode(int x) { val = x; }
+    }
+
     class Program
     {
+        public static ListNode addTwoNumbers(ListNode l1, ListNode l2)
+        {
+            int carry = 0;
+            ListNode head = new ListNode(0);
+            ListNode curr = head;
+
+            while (l1 != null || l2 != null)
+            {
+                int x = (l1 != null) ? l1.val : 0;
+                int y = (l2 != null) ? l2.val : 0;
+                int sum = carry + x + y;
+                carry = sum / 10;
+                curr.next = new ListNode(sum % 10);
+                curr = curr.next;
+                if (l1 != null)
+                    l1 = l1.next;
+                if (l2 != null)
+                    l2 = l2.next;
+            }
+            if (carry > 0)
+            {
+                curr.next = new ListNode(carry);
+
+            }
+
+            head = head.next;
+            return head;
+        }
         static void Main(string[] args)
         {
-            int[] arr = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            int index1 = -1;
-            int index2 = -1;
-            int sum = 10;
-            Dictionary<int, int> dict = new Dictionary<int, int>();
-            for (int i = 0; i < arr.Length; i++)
+            ListNode l1 = new ListNode(2);
+            l1.next = new ListNode(4);
+            l1.next.next = new ListNode(3);
+
+            ListNode l2 = new ListNode(5);
+            l2.next = new ListNode(6);
+            l2.next.next = new ListNode(4);
+
+            ListNode res = addTwoNumbers(l1, l2);
+            while (res != null)
             {
-                if (dict.ContainsKey(arr[i]))
-                {
-                    index1 = i;
-                    index2 = dict[arr[i]];
-                    break;
-                }
-                dict[sum - arr[i]] = i;
+                System.Console.Write(res.val + " ");
+                res = res.next;
             }
-            System.Console.WriteLine("Index1: {0} and Index2: {1}", index1, index2);
         }
     }
 }
