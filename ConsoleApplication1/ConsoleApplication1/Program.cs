@@ -5,11 +5,13 @@ namespace ConsoleApplication1
     public class Node
     {
         public Node Next;
+        public Node Prev;
         public int value;
         public Node(int d)
         {
             value = d;
             Next = null;
+            Prev = null;
         }
     }
 
@@ -41,6 +43,7 @@ namespace ConsoleApplication1
                     curr = curr.Next;
                 }
                 curr.Next = newNode;
+                newNode.Prev = curr;
             }
         }
 
@@ -84,7 +87,6 @@ namespace ConsoleApplication1
         public void Del(int num)
         {
             Node curr = head;
-            Node prev = null;
             // if first node itself is to be deleted
             if (curr != null && curr.value == num)
             {
@@ -93,12 +95,20 @@ namespace ConsoleApplication1
             }
             while (curr != null && curr.value != num)
             {
-                prev = curr;
                 curr = curr.Next;
             }
             if (curr == null)
                 return;
-            prev.Next = curr.Next;
+
+            if (curr.Next != null)
+            {
+                curr.Next.Prev = curr.Prev;
+
+            }
+            if (curr.Prev != null)
+            {
+                curr.Prev.Next = curr.Next;
+            }
         }
 
         // Add node in the beginning
@@ -106,24 +116,9 @@ namespace ConsoleApplication1
         {
             Node curr = new Node(data);
             curr.Next = head;
+            if (head != null)
+                head.Prev = curr;
             head = curr;
-        }
-
-        // Reverse a single linklist
-        public void reverse()
-        {
-            Node curr = head;
-            Node prev = null;
-            Node temp = null;
-
-            while (curr != null)
-            {
-                temp = curr.Next;
-                curr.Next = prev;
-                prev = curr;
-                curr = temp;
-            }
-            head = prev;
         }
     }
 
@@ -149,7 +144,6 @@ namespace ConsoleApplication1
             l1.AddInBeg(3);
             l1.Del(8);
             l1.Show();
-            l1.reverse();
             l1.Show();
             System.Console.WriteLine("Length: " + l1.Length());
         }
