@@ -1,42 +1,62 @@
-// longest substring sequence
-// O(n)
-
-// HashSet is just like List only difference is it does not allow duplicate valuse
-// Add method returns false if duplicate valuess are returned.
-
-using System;
-using System.Collections.Generic;
-
+// O(m+n) 
 namespace ConsoleApplication1
 {
     class Program
     {
-        //abcade
+        public static void findMedian(int[] arr3)
+        {
+            int mid = arr3.Length / 2;
+            double median;
+            System.Console.WriteLine(arr3[mid]);
+            System.Console.WriteLine(arr3[mid - 1]);
+            System.Console.WriteLine((arr3[mid] + arr3[mid - 1]) / 2);
+            if (mid % 2 == 0)
+            {
+                median = (double)(arr3[mid] + arr3[mid - 1]) / 2;
+            }
+            else
+            {
+                median = arr3[mid];
+            }
+            System.Console.WriteLine("the median is: " + median);
+        }
+
         static void Main(string[] args)
         {
-            Console.WriteLine(LengthOfLongestSubstring("abcba"));
-        }
-        public static int LengthOfLongestSubstring(string s)
-        {
-            int i = 0;
-            int j = 0;
-            int maxLength = 0;
-            HashSet<int> h1 = new HashSet<int>();
-            int n = s.Length;
-            while (i < n && j < n)
+            int[] arr1 = new int[] { 1, 3 };
+            int[] arr2 = new int[] { 2, 4 };
+            int[] arr3 = new int[arr1.Length + arr2.Length];
+            int i = 0, j = 0, k = 0;
+            while (i < arr1.Length && j < arr2.Length)
             {
-                if (h1.Add(s[j]))
+                if (arr1[i] <= arr2[j])
                 {
-                    j++;
-                    maxLength = Math.Max(maxLength, j - i);
+                    arr3[k] = arr1[i];
+                    i++;
                 }
                 else
                 {
-                    h1.Remove(s[i]);
-                    i++;
+                    arr3[k] = arr2[j];
+                    j++;
                 }
+                k++;
             }
-            return maxLength;
+
+            while (i < arr1.Length)
+            {
+                arr3[k] = arr1[i];
+                i++;
+                k++;
+            }
+
+            while (j < arr2.Length)
+            {
+                arr3[k] = arr2[j];
+                j++;
+                k++;
+            }
+
+            findMedian(arr3);
         }
     }
 }
