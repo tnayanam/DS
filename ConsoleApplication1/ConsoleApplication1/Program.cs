@@ -8,32 +8,23 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            string str = "-1234";
-            Console.WriteLine(convertAtoI(str));
+            Console.WriteLine(IsPalindrome(5225));
         }
 
-        public static int convertAtoI(string str)
+        public static bool IsPalindrome(int x)
         {
-            bool isNegative = false;
-            int startPoint = 0;
-            if (str == null || str.Length == 0)
-                return 0;
-            str = str.Trim();
-            if (str[0] == '-')
-            {
-                isNegative = true;
-                startPoint = 1;
-            }
+            if (x < 0)
+                return false;
+            int rev = 0;
+            int orig = x;
 
-            int num = 0;
-            for (int i = startPoint; i < str.Length; i++)
+            while (x != 0)
             {
-                num = num * 10 + (str[i] - '0');// ascii of 1 is 49 to get actual 1 we need to sbtact it with ascii of 0
+                rev = rev * 10 + x % 10;
+                x = x / 10;
             }
+            return (rev == orig) ? true : false;
 
-            if (isNegative)
-                return -num;
-            return num;
         }
     }
 }
