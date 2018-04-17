@@ -8,26 +8,32 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            int num = 204;
-            Console.WriteLine(Reverse(num));
+            string str = "-1234";
+            Console.WriteLine(convertAtoI(str));
         }
 
-        public static int Reverse(int num)
+        public static int convertAtoI(string str)
         {
-            if (num > int.MaxValue || num < int.MinValue)
+            bool isNegative = false;
+            int startPoint = 0;
+            if (str == null || str.Length == 0)
                 return 0;
-            var integer = Math.Abs(num);
-            int newnum = 0;
-            while (integer != 0)
+            str = str.Trim();
+            if (str[0] == '-')
             {
-                if (newnum > (int.MaxValue - integer % 10) / 10)
-                {
-                    return 0;
-                }
-                newnum = newnum * 10 + integer % 10;
-                integer = integer / 10;
+                isNegative = true;
+                startPoint = 1;
             }
-            return num > 0 ? newnum : -newnum;
+
+            int num = 0;
+            for (int i = startPoint; i < str.Length; i++)
+            {
+                num = num * 10 + (str[i] - '0');// ascii of 1 is 49 to get actual 1 we need to sbtact it with ascii of 0
+            }
+
+            if (isNegative)
+                return -num;
+            return num;
         }
     }
 }
