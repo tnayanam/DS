@@ -1,42 +1,35 @@
-// O(n*n) 
+// Reverse an integer
+
+using System;
+
 namespace ConsoleApplication1
 {
     class Program
     {
         static void Main(string[] args)
         {
-            string str = "abqbba";
-            System.Console.WriteLine(LongestPalindraomeString(str));
+            int num = 204;
+            Console.WriteLine(Reverse(num));
         }
 
-        public static string LongestPalindraomeString(string str)
+        public static int Reverse(int num)
         {
-            var longest = str.Substring(0, 1);
-            for (int i = 0; i < str.Length - 1; i++)
+            if (num > int.MaxValue || num < int.MinValue)
+                return 0;
+            var integer = Math.Abs(num);
+            int newnum = 0;
+            while (integer != 0)
             {
-                var s1 = ExpandAroundCenter(str, i, i);
-                if (s1.Length > longest.Length)
+                if (newnum > (int.MaxValue - integer % 10) / 10)
                 {
-                    longest = s1;
+                    return 0;
                 }
-                var s2 = ExpandAroundCenter(str, i, i + 1); // string like "abba" their center is in middle of two b's
-                if (s2.Length > longest.Length)
-                {
-                    longest = s2;
-                }
+                newnum = newnum * 10 + integer % 10;
+                integer = integer / 10;
             }
-            return longest;
-        }
-
-        public static string ExpandAroundCenter(string str, int left, int right)
-        {
-            while (left >= 0 && right <= str.Length && str[left] == str[right])
-            {
-                left--;
-                right++;
-            }
-            return str.Substring(left + 1, right - left - 1);  // since after this loop left has decremeted one extra nd right has incremented on extra.
+            return num > 0 ? newnum : -newnum;
         }
     }
-
 }
+
+
