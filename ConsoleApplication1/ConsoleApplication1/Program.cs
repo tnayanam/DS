@@ -1,5 +1,5 @@
 
-//4 SUM O(N*N*N)
+//4 SUM O(N*N) Tuple and dictionary
 using System;
 using System.Collections.Generic;
 namespace ConsoleApplication1
@@ -9,32 +9,32 @@ namespace ConsoleApplication1
         static void Main(string[] args)
         {
             int[] arr = new int[] { 1,2 , 10, 20, 30, 40};
+            Dictionary<int, Tuple<int, int>> dict = new Dictionary<int, Tuple<int, int>>();
             int len = arr.Length;
             int sum = 91;
-            for (int i = 0; i < len - 3; i++)
+            for (int i = 0; i < len-1; i++)
             {
-                for (int j = i+1; j < len - 2; j++)
+                for (int j = i+1; j < len; j++)
                 {
-                    int tempsum = arr[i] + arr[j];
-                    int low = j + 1;
-                    int high = len - 1;
-                    while(low<high)
-                    {
-                        if(tempsum + arr[low] + arr[high] > sum)
-                        {
-                            high--;
-                        }
-                        else   if(tempsum + arr[low] + arr[high] < sum)
-                        {
-                            low++;
-                        }
-                        else
-                        {
-                            Console.WriteLine(arr[i] + " " + arr[j] + " " + arr[low] + " " + arr[high]);
-                            return;
-                        }
-                    }
+                    if (!dict.ContainsKey(arr[i] + arr[j]))
+                    dict.Add((arr[i] + arr[j]), new Tuple<int, int>(i, j));
                 }
+            }
+            for(int i =0;i<dict.Count ; i++)
+            {
+                  for (int j = i+1; j < len; j++)
+                  {
+                      int tempsum = arr[i] + arr[j];
+                      if(dict.ContainsKey(sum - tempsum))
+                      {
+                          Tuple<int, int> t1 = new Tuple<int, int>(dict[sum - tempsum].Item1,dict[sum - tempsum].Item2);
+                          Console.WriteLine(t1.Item1);
+                          Console.WriteLine(t1.Item2);
+                          Console.WriteLine(j);
+                          Console.WriteLine(i);
+                          return;
+                      }
+                  }
             }
         }
     }

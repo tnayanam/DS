@@ -15,5 +15,4 @@ C:\Users\Dev-10\Desktop\Demo\DS3\DS\ConsoleApplication1\ConsoleApplication1\obj\
 C:\Users\Dev-10\Desktop\Demo\DS3\DS\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
 C:\Users\Dev-10\Desktop\Demo\DS3\DS\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
 C:\Users\Dev-10\Desktop\Demo\DS3\DS\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
-C:\Users\Dev-10\Desktop\Demo\DS3\DS\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.CodeAnalysisLog.xml
-C:\Users\Dev-10\Desktop\Demo\DS3\DS\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.lastcodeanalysissucceeded
+C:\Users\Dev-10\Desktop\Demo\DS3\DS\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
