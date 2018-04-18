@@ -10,3 +10,6 @@ C:\Users\Dev-10\Desktop\Demo\DS\ConsoleApplication1\ConsoleApplication1\obj\Debu
 C:\Users\Dev-10\Desktop\Demo\DS\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
 C:\Users\Dev-10\Desktop\Demo\DS\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
 C:\Users\Dev-10\Desktop\Demo\DS\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+C:\Users\Dev-10\Desktop\Demo\DS3\DS\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\Dev-10\Desktop\Demo\DS3\DS\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\Users\Dev-10\Desktop\Demo\DS3\DS\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
