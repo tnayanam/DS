@@ -8,12 +8,31 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            int num = 549;
-            string[] str1 = new string[] { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
-            string[] str2 = new string[] { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "Xc" };
-            string[] str3 = new string[] { "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM" };
-            string res = str3[(num % 1000) / 100] + str2[(num % 100) / 10] + str1[num % 10];
+             Dictionary<char, int> dict = new Dictionary<char, int> { 
+            {'M', 1000},
+            {'D', 500},
+            {'L',100},
+            {'X', 10},
+            {'V',5},
+            {'I',1}
+            };
 
+            string s = "IX";
+            int i = s.Length-1;
+            int ret = dict[s[i]];
+            i--;
+            while(i>=0)
+            {
+                if(dict[s[i]] >= dict[s[i+1]])
+                {
+                    ret = ret + dict[s[i]];
+                    i--;
+                }
+                else
+                {
+                    ret = ret - dict[s[i]];
+                    i--;
+                }
         }
     }
 }
