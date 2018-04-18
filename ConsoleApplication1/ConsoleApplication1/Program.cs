@@ -1,6 +1,5 @@
-// Longest common prefix O(n*N)
-// 3 SUM
-// Find one triplet
+
+//closest SUM
 using System;
 using System.Collections.Generic;
 namespace ConsoleApplication1
@@ -9,39 +8,43 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            int[] numArr = new int[] { 1, 4, 45, 6, 10, 8 }; // for unsorted we might need to apply sort alogorithm before.
+            int[] numArr = new int[]  {-4,-1, 1,2}; // for unsorted we might need to apply sort alogorithm before.
             List<int> lst = new List<int>();
-            lst = prefix(numArr, num:12);
-            foreach (var item in lst)
-            {
-                Console.WriteLine(item);
-            }
+            Console.WriteLine(prefix(numArr, target: 1));
+            
         }
-        public static List<int> prefix(int[] arr, int num)
+        public static int prefix(int[] nums, int target)
         {
-            int j = 0;    
-            int len = arr.Length - 2;
-            List<int> lst = new List<int>();
-            for (int i = 0; i <len; i++ )
+            var result = 0;
+            var minDiff = int.MaxValue;
+            for (int i = 0; i < nums.Length - 2; i++)
             {
-                int low = i+1;
-                int high = arr.Length - 1;
-                while(low<=high)
+                var j = i + 1;
+                var k = nums.Length - 1;
+                while (j < k)
                 {
-                    if(arr[i] + arr[low] + arr[high] == num)
+                    var sum = nums[i] + nums[j] + nums[k];
+                    var diff = Math.Abs(sum - target);
+                    if (minDiff > diff)
                     {
-                        lst.Add(arr[i]);
-                        lst.Add(arr[low]);
-                        lst.Add(arr[high]);
-                        return lst;
+                        result = sum;
+                        minDiff = diff;
                     }
-                    else if (arr[i] + arr[low] + arr[high] > num)
-                        high--;
+                    else if (sum < target)
+                    {
+                        j++;
+                    }
+                    else if (sum > target)
+                    {
+                        k--;
+                    }
                     else
-                        low++;
+                    {
+                        return result;
+                    }
                 }
             }
-            return lst;
+            return result;
         }
     }
 }
