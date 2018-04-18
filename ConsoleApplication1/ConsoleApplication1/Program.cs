@@ -1,5 +1,5 @@
 
-//closest SUM
+//4 SUM O(N*N*N*)
 using System;
 using System.Collections.Generic;
 namespace ConsoleApplication1
@@ -8,44 +8,29 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            int[] numArr = new int[]  {-4,-1, 1,2}; // for unsorted we might need to apply sort alogorithm before.
-            List<int> lst = new List<int>();
-            Console.WriteLine(prefix(numArr, target: 1));
-            
-        }
-        public static int prefix(int[] nums, int target)
-        {
-            var result = 0;
-            var minDiff = int.MaxValue;
-            for (int i = 0; i < nums.Length - 2; i++)
+            int[] arr = new int[] { 10, 20, 30, 40, 1, 2 };
+            int len = arr.Length;
+            int sum = 91;
+            for (int i = 0; i < len - 3; i++)
             {
-                var j = i + 1;
-                var k = nums.Length - 1;
-                while (j < k)
+                for (int j = i+1; j < len - 2; j++)
                 {
-                    var sum = nums[i] + nums[j] + nums[k];
-                    var diff = Math.Abs(sum - target);
-                    if (minDiff > diff)
+                    for (int k = j+1; k < len - 1; k++)
                     {
-                        result = sum;
-                        minDiff = diff;
-                    }
-                    else if (sum < target)
-                    {
-                        j++;
-                    }
-                    else if (sum > target)
-                    {
-                        k--;
-                    }
-                    else
-                    {
-                        return result;
+                        for (int l = k+1; l < len; l++)
+                        {
+                            if (sum == arr[i] + arr[j] + arr[k] + arr[l])
+                            {
+                                Console.WriteLine(arr[i] + " " + arr[j] + " " + arr[k] + " " + arr[l]);
+                                break;
+                            }
+                        }
                     }
                 }
             }
-            return result;
+
         }
+
     }
 }
 
