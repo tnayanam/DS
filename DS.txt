@@ -33,4 +33,4 @@ Similarly because elements are not sorted, it makes searching more complicated, 
 SortedDictionary
 In a SortedDictionary elements must be sorted when they are added, making insertion times slower.
 
-But since elements are kept stored, searching can be done with binary search, meaning searching is faster.
+But since elements are kept stored, searching can be done with binary search, meaning searching is faster.hmm
