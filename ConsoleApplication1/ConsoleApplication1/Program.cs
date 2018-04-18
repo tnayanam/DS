@@ -1,36 +1,48 @@
 // Longest common prefix O(n*N)
+// 3 SUM
+// Find one triplet
 using System;
-
+using System.Collections.Generic;
 namespace ConsoleApplication1
 {
     class Program
     {
         static void Main(string[] args)
         {
-            string[] strs = new string[] { "Geeks", "Geeabc", "GeeksfporGeeks" };
-            Console.WriteLine(prefix(strs));
-
-        }
-        public static string prefix(string[] strs)
-        {
-            if (strs.Length == 0) return "";
-            var longest = "";
-
-
-            for (int i = 0; i < strs[0].Length; i++ )
+            int[] numArr = new int[] { 1, 4, 45, 6, 10, 8 }; // for unsorted we might need to apply sort alogorithm before.
+            List<int> lst = new List<int>();
+            lst = prefix(numArr, num:12);
+            foreach (var item in lst)
             {
-                for(int j = 1;j<strs.Length;i++)
+                Console.WriteLine(item);
+            }
+        }
+        public static List<int> prefix(int[] arr, int num)
+        {
+            int j = 0;    
+            int len = arr.Length - 2;
+            List<int> lst = new List<int>();
+            for (int i = 0; i <len; i++ )
+            {
+                int low = i+1;
+                int high = arr.Length - 1;
+                while(low<=high)
                 {
-                    if(strs[0][i] != strs[j][i] || strs[j].Length == i)
+                    if(arr[i] + arr[low] + arr[high] == num)
                     {
-                        return longest;
+                        lst.Add(arr[i]);
+                        lst.Add(arr[low]);
+                        lst.Add(arr[high]);
+                        return lst;
                     }
-                    longest += strs[0][i];
+                    else if (arr[i] + arr[low] + arr[high] > num)
+                        high--;
+                    else
+                        low++;
                 }
             }
-            return longest;
+            return lst;
         }
-
     }
 }
 
