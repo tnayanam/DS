@@ -1,5 +1,5 @@
 
-//4 SUM O(N*N*N*)
+//4 SUM O(N*N*N*N)
 using System;
 using System.Collections.Generic;
 namespace ConsoleApplication1
