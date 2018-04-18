@@ -1,5 +1,4 @@
-// Reverse an integer
-
+// Longest common prefix O(n*N)
 using System;
 
 namespace ConsoleApplication1
@@ -8,32 +7,30 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-             Dictionary<char, int> dict = new Dictionary<char, int> { 
-            {'M', 1000},
-            {'D', 500},
-            {'L',100},
-            {'X', 10},
-            {'V',5},
-            {'I',1}
-            };
+            string[] strs = new string[] { "Geeks", "Geeabc", "GeeksfporGeeks" };
+            Console.WriteLine(prefix(strs));
 
-            string s = "IX";
-            int i = s.Length-1;
-            int ret = dict[s[i]];
-            i--;
-            while(i>=0)
-            {
-                if(dict[s[i]] >= dict[s[i+1]])
-                {
-                    ret = ret + dict[s[i]];
-                    i--;
-                }
-                else
-                {
-                    ret = ret - dict[s[i]];
-                    i--;
-                }
         }
+        public static string prefix(string[] strs)
+        {
+            if (strs.Length == 0) return "";
+            var longest = "";
+
+
+            for (int i = 0; i < strs[0].Length; i++ )
+            {
+                for(int j = 1;j<strs.Length;i++)
+                {
+                    if(strs[0][i] != strs[j][i] || strs[j].Length == i)
+                    {
+                        return longest;
+                    }
+                    longest += strs[0][i];
+                }
+            }
+            return longest;
+        }
+
     }
 }
 
