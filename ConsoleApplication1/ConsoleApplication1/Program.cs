@@ -20,19 +20,28 @@ namespace ConsoleApplication1
         {
             Node start = new Node(0);
             start.Next = head;
-            Node fast = start;
-            Node slow = start;
+            Node fast = head;
+            Node slow = head;
             for (int i = 0; i < fromLast; i++)
             {
                 fast = fast.Next;
             }
-            while (fast.Next != null)
+            if (fast == null)
             {
-                slow = slow.Next;
-                fast = fast.Next;
+                head = head.Next;
             }
-            slow.Next = slow.Next.Next;
-            return start.Next;
+            else
+            {
+                while (fast.Next != null)
+                {
+                    slow = slow.Next;
+                    fast = fast.Next;
+                }
+                slow.Next = slow.Next.Next;
+            }
+
+
+            return head;
         }
         static void Main(string[] args)
         {
