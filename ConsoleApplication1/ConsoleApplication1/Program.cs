@@ -18,31 +18,21 @@ namespace ConsoleApplication1
     {
         public static Node RemoveNodeFromList(Node head, int fromLast)
         {
-            Node curr = head;
-            int lenOfLL = 0;
-            while (curr != null)
+            Node start = new Node(0);
+            start.Next = head;
+            Node fast = start;
+            Node slow = start;
+            for (int i = 0; i < fromLast; i++)
             {
-                lenOfLL++;
-                curr = curr.Next;
+                fast = fast.Next;
             }
-            Node temp = head;
-            Node old = head;
-            if (lenOfLL < fromLast || fromLast < 1)
-                return null;
-            else if (lenOfLL == fromLast)
+            while (fast.Next != null)
             {
-                head = head.Next;
+                slow = slow.Next;
+                fast = fast.Next;
             }
-            else
-            {
-                for (int i = 0; i < lenOfLL - fromLast; i++)
-                {
-                    old = temp;
-                    temp = temp.Next;
-                }
-                old.Next = temp.Next;
-            }
-            return head;
+            slow.Next = slow.Next.Next;
+            return start.Next;
         }
         static void Main(string[] args)
         {
@@ -52,13 +42,15 @@ namespace ConsoleApplication1
             n1.Next.Next.Next = new Node(4);
             n1.Next.Next.Next.Next = new Node(5);
             n1.Next.Next.Next.Next.Next = new Node(6);
+            n1.Next.Next.Next.Next.Next.Next = new Node(7);
+            n1.Next.Next.Next.Next.Next.Next.Next = new Node(8);
             Node curr = n1;
             while (curr != null)
             {
                 Console.Write(curr.data + " ");
                 curr = curr.Next;
             }
-            Node head = RemoveNodeFromList(n1, 3);
+            Node head = RemoveNodeFromList(n1, 8);
             Console.WriteLine(" ");
             curr = head;
 
