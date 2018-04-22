@@ -5,23 +5,50 @@ using System;
 
 class Solution
 {
-    public static int Div(int num, int div)
+    public static int[] Find(int[] nums)
     {
-        if (num < div || div == 0)
-            return 0;
-        int i = 0;
-        while (num >= div)
+        int i = nums.Length - 1;
+        while (i > 0 && nums[i - 1] > nums[i])
         {
-            num = num - div;
-            i++;
+            i--;
         }
-        return i;
+        if (i == 0)
+        {
+            Array.Reverse(nums);
+            return nums;
+        }
+
+        Console.WriteLine("Element: " +  nums[i-1]); // now towards right find the just larest element then num[i-1]
+
+        int num = nums[i - 1];
+        int diff = Int32.MaxValue;
+        int index = 0;
+        for(int j = i;j<nums.Length;j++)
+        {
+            int sub = nums[j] - num;
+            if(sub<diff && nums[j] > nums[i-1])
+            {
+                diff = sub;
+                 index = j;
+            }
+        }
+        var temp = nums[index];
+        nums[index] = nums[i - 1];
+        nums[i - 1] = temp;
+
+        Array.Reverse(nums, i, nums.Length-i );
+
+
+        return nums;
     }
 
     static void Main(string[] args)
     {
-        int num = 40;
-        int div = 8;
-        Console.Write("Output: " + Div(num, div));
+        int[] arr = new int[] { 5,3,6,8,7,1 };
+        Find(arr);
+        foreach (var item in arr)
+        {
+            Console.Write(item + " ");
+        }
     }
 }
