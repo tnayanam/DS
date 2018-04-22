@@ -1,45 +1,28 @@
-public class Node
-{
-    public int data;
-    public Node Next;
-    public Node(int value)
-    {
-        Next = null;
-        data = value;
-    }
-}
+using System;
+
 public class Program
 {
-
-    public static Node PairWise(Node head)
+    public static int removeDupe(int[] arr)
     {
-        var dummy = new Node(0);
-        dummy.Next = head;
-        head = dummy;
-        while (head.Next != null && head.Next.Next != null)
+        int j = 0;
+        for (int i = 0; i < arr.Length-1; i++)
         {
-            var tail = head.Next;
-            var nextHead = head.Next.Next;
-            head.Next = nextHead;
-            tail.Next = nextHead.Next;
-            nextHead.Next = tail;
-            head = tail;
+            if (arr[i] != arr[i + 1])
+            {
+                j++;
+                arr[j] = arr[i + 1];
+            }
         }
-        return dummy.Next;
+        return j;
     }
 
     static void Main(string[] args)
     {
-        Node head1 = new Node(1);
-        head1.Next = new Node(2);
-        head1.Next.Next = new Node(3);
-        head1.Next.Next.Next = new Node(4);
-        head1.Next.Next.Next.Next = new Node(5);
-        head1.Next.Next.Next.Next.Next = new Node(6);
-        Node mainHead = PairWise(head1);
-        while (mainHead != null)
+        int[] arr = new int[] { 1, 2, 2, 3, 4, 4, 4, 5, 5 };
+        int newLen = removeDupe(arr);
+        for (int i = 0; i <= newLen; i++)
         {
-            System.Console.Write(mainHead.data + " ");
+            Console.Write(arr[i] + " ");
         }
     }
 }
