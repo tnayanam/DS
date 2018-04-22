@@ -2,25 +2,31 @@ using System;
 
 public class Program
 {
-    public static int removeDupe(int[] arr)
+    public static int RemoveElement(int[] nums, int val)
     {
-        int j = 0;
-        for (int i = 0; i < arr.Length-1; i++)
+
+        if (nums.Length == 0)
         {
-            if (arr[i] != arr[i + 1])
+            return 0;
+        }
+        int index = 0;
+
+        for (int i = 0; i < nums.Length; i++)
+        {
+            if (nums[i] != val)
             {
-                j++;
-                arr[j] = arr[i + 1];
+                nums[index] = nums[i];
+                index++;
             }
         }
-        return j;
+        return index;
     }
-
     static void Main(string[] args)
     {
         int[] arr = new int[] { 1, 2, 2, 3, 4, 4, 4, 5, 5 };
-        int newLen = removeDupe(arr);
-        for (int i = 0; i <= newLen; i++)
+        int num = 5;
+        int newLen = RemoveElement(arr, num);
+        for (int i = 0; i < newLen; i++)
         {
             Console.Write(arr[i] + " ");
         }
