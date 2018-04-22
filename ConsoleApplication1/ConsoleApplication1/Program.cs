@@ -1,54 +1,45 @@
+// test case " "
+//             "("
+//             ")"
+//             "()"
 using System;
-
-// To execute C#, please define "static void Main" on a class
-// named Solution.
+using System.Collections.Generic;
 
 class Solution
 {
-    public static int[] Find(int[] nums)
+    public static int CheckString(string str)
     {
-        int i = nums.Length - 1;
-        while (i > 0 && nums[i - 1] > nums[i])
+        Stack<int> s1 = new Stack<int>();
+        s1.Push(-1);
+        int res = 0;
+        for (int index = 0; index < str.Length; index++)
         {
-            i--;
-        }
-        if (i == 0)
-        {
-            Array.Reverse(nums);
-            return nums;
-        }
-
-        Console.WriteLine("Element: " +  nums[i-1]); // now towards right find the just larest element then num[i-1]
-
-        int num = nums[i - 1];
-        int diff = Int32.MaxValue;
-        int index = 0;
-        for(int j = i;j<nums.Length;j++)
-        {
-            int sub = nums[j] - num;
-            if(sub<diff && nums[j] > nums[i-1])
+            if (str[index] == '(')
             {
-                diff = sub;
-                 index = j;
+                s1.Push(index);
+            }
+            else
+            {
+                s1.Pop();
+                if (s1.Count != 0)
+                {
+                    if (res < index - s1.Peek())
+                    {
+                        res = index - s1.Peek();
+                    }
+                }
+                else
+                {
+                    s1.Push(index);
+                }
             }
         }
-        var temp = nums[index];
-        nums[index] = nums[i - 1];
-        nums[i - 1] = temp;
-
-        Array.Reverse(nums, i, nums.Length-i );
-
-
-        return nums;
+        return res;
     }
-
     static void Main(string[] args)
     {
-        int[] arr = new int[] { 5,3,6,8,7,1 };
-        Find(arr);
-        foreach (var item in arr)
-        {
-            Console.Write(item + " ");
-        }
+        string str = "))()()(((())())(()";
+
+        Console.Write(CheckString(str));
     }
 }
