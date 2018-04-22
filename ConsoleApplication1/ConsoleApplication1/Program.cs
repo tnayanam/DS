@@ -1,34 +1,33 @@
-using System;
-
 public class Program
 {
-    public static int RemoveElement(int[] nums, int val)
+    public static int check(string str, string needle)
     {
-
-        if (nums.Length == 0)
+        if (str == null || needle == null || needle.Length > str.Length)
+            return -1;
+        int j = 0;
+        for (int i = 0; i < str.Length && j<needle.Length; i++)
         {
-            return 0;
-        }
-        int index = 0;
-
-        for (int i = 0; i < nums.Length; i++)
-        {
-            if (nums[i] != val)
+            if (str[i] == needle[j])
             {
-                nums[index] = nums[i];
-                index++;
+                j++;
+            }
+            else
+            {
+                j = 0;
+            }
+            if (j == needle.Length)
+            {
+                return i - needle.Length + 1;
             }
         }
-        return index;
+        return -1;
     }
+
     static void Main(string[] args)
     {
-        int[] arr = new int[] { 1, 2, 2, 3, 4, 4, 4, 5, 5 };
-        int num = 5;
-        int newLen = RemoveElement(arr, num);
-        for (int i = 0; i < newLen; i++)
-        {
-            Console.Write(arr[i] + " ");
-        }
+        string str = "hekjkjllo";
+        string needle = "ll";
+        int index = check(str, needle);
+        System.Console.WriteLine(index);
     }
 }
