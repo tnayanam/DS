@@ -1,33 +1,27 @@
-public class Program
+using System;
+
+// To execute C#, please define "static void Main" on a class
+// named Solution.
+
+class Solution
 {
-    public static int check(string str, string needle)
+    public static int Div(int num, int div)
     {
-        if (str == null || needle == null || needle.Length > str.Length)
-            return -1;
-        int j = 0;
-        for (int i = 0; i < str.Length && j<needle.Length; i++)
+        if (num < div || div == 0)
+            return 0;
+        int i = 0;
+        while (num >= div)
         {
-            if (str[i] == needle[j])
-            {
-                j++;
-            }
-            else
-            {
-                j = 0;
-            }
-            if (j == needle.Length)
-            {
-                return i - needle.Length + 1;
-            }
+            num = num - div;
+            i++;
         }
-        return -1;
+        return i;
     }
 
     static void Main(string[] args)
     {
-        string str = "hekjkjllo";
-        string needle = "ll";
-        int index = check(str, needle);
-        System.Console.WriteLine(index);
+        int num = 40;
+        int div = 8;
+        Console.Write("Output: " + Div(num, div));
     }
 }
