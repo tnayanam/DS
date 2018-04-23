@@ -1,45 +1,64 @@
-// test case " "
-//             "("
-//             ")"
-//             "()"
 using System;
 using System.Collections.Generic;
 
 class Solution
 {
-    public static int CheckString(string str)
+    public static int FindPivot(int[] arr, int num)
     {
-        Stack<int> s1 = new Stack<int>();
-        s1.Push(-1);
-        int res = 0;
-        for (int index = 0; index < str.Length; index++)
+        int pivot = arr.Length - 1;
+        for (int i = 0; i < arr.Length - 1; i++)
         {
-            if (str[index] == '(')
+            if (arr[i] > arr[i + 1])
             {
-                s1.Push(index);
+                pivot = i;
+                break;
             }
             else
             {
-                s1.Pop();
-                if (s1.Count != 0)
-                {
-                    if (res < index - s1.Peek())
-                    {
-                        res = index - s1.Peek();
-                    }
-                }
-                else
-                {
-                    s1.Push(index);
-                }
+
             }
         }
-        return res;
+
+        return pivot;
     }
+
+    public static int BinarySearch(int[] arr, int left, int right, int num)
+    {
+        if (right < left)
+            return -1;
+        int mid = (left + right) / 2;
+        if (arr[mid] == num)
+            return mid;
+        if (arr[mid] > num)
+            return BinarySearch(arr, left, mid - 1, num);
+        else
+            return BinarySearch(arr, mid + 1, right, num);
+    }
+
+    public static int SearchOnPivot(int[] arr, int num)
+    {
+        int pivot = FindPivot(arr, num);
+        int index;
+        if (num > arr[0])
+        {
+            index = BinarySearch(arr, 0, pivot, num);
+        }
+        else
+        {
+            index = BinarySearch(arr, pivot + 1, arr.Length - 1, num);
+        }
+        return index;
+    }
+
     static void Main(string[] args)
     {
-        string str = "))()()(((())())(()";
-
-        Console.Write(CheckString(str));
+        // int[] arr = new int[] { 4, 5, 6, 7, 0, 1, 2 };
+        int[] arr = new int[] { 4, 5, 6, 7, 8, 9 };
+        int num = 7;
+        int index = SearchOnPivot(arr, num);
+        if (index == -1)
+            Console.Write("Element Not Found");
+        else
+            Console.Write("Num: " + arr[index] + " Index: " + index);
     }
 }
