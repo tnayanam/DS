@@ -1,64 +1,47 @@
 using System;
-using System.Collections.Generic;
+
+// To execute C#, please define "static void Main" on a class
+// named Solution.
 
 class Solution
 {
-    public static int FindPivot(int[] arr, int num)
+    public static void Print(int[][] arr)
     {
-        int pivot = arr.Length - 1;
-        for (int i = 0; i < arr.Length - 1; i++)
+
+        int n = arr.Length;
+        int[] indices = new int[arr.Length];
+
+        while (true)
         {
-            if (arr[i] > arr[i + 1])
+            for (int i = 0; i < n; i++)
+                Console.Write(arr[i][indices[i]] + " ");
+            Console.WriteLine(" ");
+
+            int next = arr.Length - 1;
+
+            while (next >= 0 && (indices[next] + 1 >= arr[next].Length))
+                next--;
+
+            if (next < 0)
+                return;
+
+            indices[next]++;
+            for (int i = next + 1; i < n; i++)
             {
-                pivot = i;
-                break;
-            }
-            else
-            {
-
+                indices[i] = 0;
             }
         }
 
-        return pivot;
-    }
 
-    public static int BinarySearch(int[] arr, int left, int right, int num)
-    {
-        if (right < left)
-            return -1;
-        int mid = (left + right) / 2;
-        if (arr[mid] == num)
-            return mid;
-        if (arr[mid] > num)
-            return BinarySearch(arr, left, mid - 1, num);
-        else
-            return BinarySearch(arr, mid + 1, right, num);
     }
-
-    public static int SearchOnPivot(int[] arr, int num)
-    {
-        int pivot = FindPivot(arr, num);
-        int index;
-        if (num > arr[0])
-        {
-            index = BinarySearch(arr, 0, pivot, num);
-        }
-        else
-        {
-            index = BinarySearch(arr, pivot + 1, arr.Length - 1, num);
-        }
-        return index;
-    }
-
     static void Main(string[] args)
     {
-        // int[] arr = new int[] { 4, 5, 6, 7, 0, 1, 2 };
-        int[] arr = new int[] { 4, 5, 6, 7, 8, 9 };
-        int num = 7;
-        int index = SearchOnPivot(arr, num);
-        if (index == -1)
-            Console.Write("Element Not Found");
-        else
-            Console.Write("Num: " + arr[index] + " Index: " + index);
+        int[][] arr = new int[3][];
+        arr[0] = new int[] { 1, 2, 3 };
+        arr[1] = new int[] { 4, 8 };
+        arr[2] = new int[] { 5, 6, 7 };
+        Print(arr);
     }
 }
+
+
