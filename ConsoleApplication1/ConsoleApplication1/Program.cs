@@ -5,42 +5,39 @@ using System;
 
 class Solution
 {
-    public static void Print(int[][] arr)
+    static void Main(string[] args)
     {
-
-        int n = arr.Length;
-        int[] indices = new int[arr.Length];
-
-        while (true)
+        int[] arr = new int[] { -1, -2, 3, 4, 5, -3, 7, -9, 8 };
+        int i = 0;
+        int j = 0;
+        bool pos = false; // we need to detect the change is from positive to negative
+        while (i < arr.Length)
         {
-            for (int i = 0; i < n; i++)
-                Console.Write(arr[i][indices[i]] + " ");
-            Console.WriteLine(" ");
-
-            int next = arr.Length - 1;
-
-            while (next >= 0 && (indices[next] + 1 >= arr[next].Length))
-                next--;
-
-            if (next < 0)
-                return;
-
-            indices[next]++;
-            for (int i = next + 1; i < n; i++)
+            if (arr[i] < 0)
             {
-                indices[i] = 0;
+                if (pos == true)
+                {
+                    var temp = arr[i];
+                    for (int k = i; k >= i - j; k--)
+                    {
+                        arr[k] = arr[k - 1];
+                    }
+                    arr[j] = temp;
+                }
+                j++;
+                i++;
+            }
+            else
+            {
+                i++;
+                pos = true;
             }
         }
 
-
-    }
-    static void Main(string[] args)
-    {
-        int[][] arr = new int[3][];
-        arr[0] = new int[] { 1, 2, 3 };
-        arr[1] = new int[] { 4, 8 };
-        arr[2] = new int[] { 5, 6, 7 };
-        Print(arr);
+        foreach (var item in arr)
+        {
+            Console.Write(item + " ");
+        }
     }
 }
 
