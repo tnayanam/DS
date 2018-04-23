@@ -1,43 +1,57 @@
 using System;
+using System.Collections.Generic;
 
 // To execute C#, please define "static void Main" on a class
 // named Solution.
 
 class Solution
 {
-    static void Main(string[] args)
+    public static bool Check(string str)
     {
-        int[] arr = new int[] { -1, -2, 3, 4, 5, -3, 7, -9, 8 };
-        int i = 0;
-        int j = 0;
-        bool pos = false; // we need to detect the change is from positive to negative
-        while (i < arr.Length)
+        Stack<char> st = new Stack<char>();
+
+        foreach (var item in str)
         {
-            if (arr[i] < 0)
+            if (item == '[' || item == ']')
             {
-                if (pos == true)
+
+                if (item == '[')
                 {
-                    var temp = arr[i];
-                    for (int k = i; k >= i - j; k--)
-                    {
-                        arr[k] = arr[k - 1];
-                    }
-                    arr[j] = temp;
+                    st.Push(item);
                 }
-                j++;
-                i++;
-            }
-            else
-            {
-                i++;
-                pos = true;
+                else if (st.Count == 0)
+                {
+                    return false;
+                }
+                else if (item == ']')
+                {
+                    if (st.Peek() == '[')
+                    {
+                        st.Pop();
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
             }
         }
 
-        foreach (var item in arr)
-        {
-            Console.Write(item + " ");
-        }
+        if (st.Count != 0)
+            return false;
+
+        return true;
+    }
+
+
+    static void Main(string[] args)
+    {
+
+
+        String str = "[[Thias is a ]] test";
+
+        Console.Write(Check(str));
+
     }
 }
 
