@@ -2,43 +2,34 @@ using System;
 
 // To execute C#, please define "static void Main" on a class
 // named Solution.
+// Insert Position
 
 class Solution
 {
+
+    public static int FindIndex(int[] arr, int left, int right, int elem)
+    {
+
+        if (left > right)
+            return left;
+
+        int mid = (left + right) / 2;
+
+        if (arr[mid] == elem)
+            return left;
+
+        if (arr[mid] > elem)
+            return FindIndex(arr, left, mid - 1, elem);
+        else
+            return FindIndex(arr, mid + 1, right, elem);
+    }
+
     static void Main(string[] args)
     {
-        int[] arr = new int[] { 1, 2, 0, 0, 0, 2, 1 };
-        int low = 0;
-        int mid = 0;
-        int high = arr.Length - 1;
-        int temp = 0;
-        while (mid <= high)
-        {
-            switch (arr[mid])
-            {
-                case 0:
-                    temp = arr[low];
-                    arr[low] = arr[mid];
-                    arr[mid] = temp;
-                    mid++;
-                    low++;
-                    break;
-                case 1:
-                    mid++;
-                    break;
-                case 2:
-                    temp = arr[mid];
-                    arr[mid] = arr[high];
-                    arr[high] = temp;
-                    high--;
-                    break;
-            }
-        }
+        int[] arr = new int[] { 1, 3, 5, 6 };
+        int elem = 2;
 
-        foreach (var item in arr)
-        {
-            Console.Write(item + " ");
-        }
+        Console.Write(FindIndex(arr, 0, arr.Length - 1, elem));
     }
 }
 
