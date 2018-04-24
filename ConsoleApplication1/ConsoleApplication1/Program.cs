@@ -1,57 +1,29 @@
 using System;
-using System.Collections.Generic;
 
 // To execute C#, please define "static void Main" on a class
 // named Solution.
 
 class Solution
 {
-    public static bool Check(string str)
-    {
-        Stack<char> st = new Stack<char>();
-
-        foreach (var item in str)
-        {
-            if (item == '[' || item == ']')
-            {
-
-                if (item == '[')
-                {
-                    st.Push(item);
-                }
-                else if (st.Count == 0)
-                {
-                    return false;
-                }
-                else if (item == ']')
-                {
-                    if (st.Peek() == '[')
-                    {
-                        st.Pop();
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-            }
-        }
-
-        if (st.Count != 0)
-            return false;
-
-        return true;
-    }
-
-
     static void Main(string[] args)
     {
+        int[] arr = new int[] { -2, -3, 4, -1, -2, 1, 5, -3 };
+        int max_so_far = arr[0];
+        int curr_max = arr[0];
+        int start = 0;
+        int end = 0;
 
+        for (int i = 1; i < arr.Length; i++)
+        {
+            if (arr[i] > arr[i] + curr_max)
+                curr_max = arr[i];
+            else
+                curr_max = arr[i] + curr_max;
 
-        String str = "[[Thias is a ]] test";
-
-        Console.Write(Check(str));
-
+            if (max_so_far < curr_max)
+                max_so_far = curr_max;
+        }
+        Console.Write(max_so_far);
     }
 }
 
