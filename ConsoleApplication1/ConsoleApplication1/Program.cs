@@ -7,23 +7,38 @@ class Solution
 {
     static void Main(string[] args)
     {
-        int[] arr = new int[] { -2, -3, 4, -1, -2, 1, 5, -3 };
-        int max_so_far = arr[0];
-        int curr_max = arr[0];
-        int start = 0;
-        int end = 0;
-
-        for (int i = 1; i < arr.Length; i++)
+        int[] arr = new int[] { 1, 2, 0, 0, 0, 2, 1 };
+        int low = 0;
+        int mid = 0;
+        int high = arr.Length - 1;
+        int temp = 0;
+        while (mid <= high)
         {
-            if (arr[i] > arr[i] + curr_max)
-                curr_max = arr[i];
-            else
-                curr_max = arr[i] + curr_max;
-
-            if (max_so_far < curr_max)
-                max_so_far = curr_max;
+            switch (arr[mid])
+            {
+                case 0:
+                    temp = arr[low];
+                    arr[low] = arr[mid];
+                    arr[mid] = temp;
+                    mid++;
+                    low++;
+                    break;
+                case 1:
+                    mid++;
+                    break;
+                case 2:
+                    temp = arr[mid];
+                    arr[mid] = arr[high];
+                    arr[high] = temp;
+                    high--;
+                    break;
+            }
         }
-        Console.Write(max_so_far);
+
+        foreach (var item in arr)
+        {
+            Console.Write(item + " ");
+        }
     }
 }
 
