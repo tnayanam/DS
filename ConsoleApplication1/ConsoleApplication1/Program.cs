@@ -1,26 +1,65 @@
-namespace MainSolution
+using System;
+using System.Collections.Generic;
+namespace ConsoleApplication1
 {
+    public delegate int AddDelagate(int num1, int num2);
+
+    class Test
+    {
+        public int Add(int num1, int num2)
+        {
+            return num1 + num2;
+        }
+    }
     class Program
     {
-        public static float CalcPow(int x, int y)
+        static void Main(string[] args)
         {
-            if (y == 0)
-                return 1;
-            float temp;
-            temp = CalcPow(x, y / 2);
-            if (y % 2 == 0)
-                return temp * temp;
-            else
+            string str = "1d6 + 2d20 - 25";
+            string[] token = str.Split(' ');
+            int length = token.Length;
+            int total = ProcessString(token[token.Length - 1]);
+            Stack<string> s1 = new Stack<string>();
+            for (int i = 0; i < token.Length; i++)
             {
-                if (y > 0)
-                    return x * temp * temp;
-                else
-                    return (temp * temp) / 2;
+                if (i % 2 != 0)
+                {
+                    s1.Push(token[i]);
+                }
             }
+            for (int i = token.Length - 3; i >= 0; )
+            {
+                var val = ProcessString(token[i]);
+                string oper = s1.Pop();
+                switch (oper)
+                {
+                    case "+":
+                        total = total + val;
+
+                        break;
+                    case "-":
+                        total = val - total;
+                        break;
+                }
+                i = i - 2;
+            }
+            Console.WriteLine("total: " + total);
         }
-        public static void Main()
+
+        public static int ProcessString(string str)
         {
-            System.Console.WriteLine(CalcPow(2, 6)); // 16
+            string[] tok = str.Split('d');
+            if (tok.Length == 1)
+                return Convert.ToInt32(tok[0]);
+
+            int intial = Convert.ToInt32(tok[0]);
+            int end = Convert.ToInt32(tok[1]);
+            Random r1 = new Random();
+            int randomValue = r1.Next(intial, end);
+            Console.WriteLine(randomValue);
+            return randomValue;
         }
     }
 }
+
+
