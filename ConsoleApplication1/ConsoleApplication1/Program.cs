@@ -1,52 +1,60 @@
-using System;
+// Transpose of a MATRIX
+/*
+ * 1 2 3
+ * 4 5 6
+ * 7 8 9
+ * 
+ * 1 4 7
+ * 2 5 8
+ * 3 6 9
+ */
 
+using System;
 namespace Multiplication
 {
     class Program
     {
         static void Main(string[] args)
         {
-            int start = 9;
-            int end = 12;
-            int index = end - start + 2;
-            int firstRow = 9;
-            int firstColumn = 9;
-
-            int[,] matrix = new int[index, index];
-
-            for (int i = 0; i < index; i++)
+            int[,] matrix = new int[,]
             {
-                for (int j = 0; j < index; j++)
-                {
-                    if (i == 0 && j == 0)
-                    {
-                        matrix[i, j] = 0;
-                        continue;
-                    }
-                    if (i == 0)
-                    {
-                        matrix[i, j] = firstRow;
-                        firstRow++;
-                    }
-                    else if (j == 0)
-                    {
-                        matrix[i, j] = firstColumn;
-                        firstColumn++;
-                    }
-                    else
-                    {
-                        matrix[i, j] = matrix[i, 0] * matrix[0, j];
-                    }
-                }
-            }
-            //output
-            for (int i = 0; i < index; i++)
+                { 1,2,3 },
+                { 4,5,6 },
+                { 7,8,9 }
+            };
+
+            for (int i = 0; i < 3; i++)
             {
-                Console.WriteLine();
-                for (int j = 0; j < index; j++)
+                for (int j = 0; j < 3; j++)
                 {
                     Console.Write(matrix[i, j] + " ");
                 }
+                Console.WriteLine();
+            }
+
+            Transpose(matrix);
+
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    Console.Write(matrix[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+        }
+
+        public static void Transpose(int[,] matrix)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = i; j < 3; j++)
+                {
+                    var temp = matrix[i, j];
+                    matrix[i, j] = matrix[j, i];
+                    matrix[j, i] = temp;
+                }
+                Console.WriteLine();
             }
         }
     }
