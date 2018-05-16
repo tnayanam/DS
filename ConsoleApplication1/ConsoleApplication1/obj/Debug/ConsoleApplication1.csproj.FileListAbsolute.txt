@@ -31,3 +31,6 @@ C:\Users\lenovo\Desktop\demo\DS\DS\ConsoleApplication1\ConsoleApplication1\obj\D
 C:\Users\Dev-10\Desktop\Demo\DS4\DS\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
 C:\Users\Dev-10\Desktop\Demo\DS4\DS\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
 C:\Users\Dev-10\Desktop\Demo\DS4\DS\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+C:\Users\lenovo\Desktop\demo\DS3\DS\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\lenovo\Desktop\demo\DS3\DS\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\Users\lenovo\Desktop\demo\DS3\DS\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
