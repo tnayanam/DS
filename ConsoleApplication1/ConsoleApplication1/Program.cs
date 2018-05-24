@@ -14,18 +14,10 @@ namespace ConsoleApplication1
             int i = 0;
             int j = 0;
             int count = 0;
-            while (i != longstr.Length)
+            while ((i = longstr.IndexOf(smallstr,i))!=-1)
             {
-                if (longstr[i] == smallstr[j])
-                    j++;
-                else if (longstr[i] != smallstr[j])
-                    j = 0;
-                if (j == smallstr.Length)
-                {
-                    count++;
-                    j = 0;
-                }
-                i++;
+                i = i + smallstr.Length;
+                count++;
             }
             Console.WriteLine(count);
         }
