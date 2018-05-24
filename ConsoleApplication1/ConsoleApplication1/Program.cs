@@ -1,54 +1,33 @@
-// print matrix zig zag order
-/*
- * 1 2 3
- * 4 5 6
- * 7 8 9
- */
+// Sub String Occurence Count
 
-namespace Multiplication
+using System;
+
+namespace ConsoleApplication1
 {
     class Program
     {
+        //abcade
         static void Main(string[] args)
         {
-            int[,] matrix = new int[,]
+            string longstr = "tanuj is a good is id sis";
+            string smallstr = "is";
+            int i = 0;
+            int j = 0;
+            int count = 0;
+            while (i != longstr.Length)
             {
-                { 1,2,3,4 },
-                { 5,6,7,8 },
-                { 9,10,11,12 }
-            };
-
-            System.Console.WriteLine(matrix.GetUpperBound(0));//2
-            System.Console.WriteLine(matrix.GetUpperBound(1));//4
-
-            for (int i = 0; i <= matrix.GetUpperBound(0); i++)
-            {
-                for (int j = 0; j <= matrix.GetUpperBound(1); j++)
+                if (longstr[i] == smallstr[j])
+                    j++;
+                else if (longstr[i] != smallstr[j])
+                    j = 0;
+                if (j == smallstr.Length)
                 {
-                    System.Console.Write(matrix[i, j] + " ");
+                    count++;
+                    j = 0;
                 }
-                System.Console.WriteLine();
+                i++;
             }
-
-            for (int i = 0; i <= matrix.GetUpperBound(0); i++)
-            {
-                for (int j = 0; j <= matrix.GetUpperBound(1); j++)
-                {
-                    if (i % 2 != 0)
-                    {
-                        System.Console.Write(matrix[i, matrix.GetUpperBound(1) - j] + " ");
-                    }
-                    else
-                    {
-                        System.Console.Write(matrix[i, j] + " ");
-                    }
-
-                }
-                //System.Console.WriteLine();
-            }
-
-
-
+            Console.WriteLine(count);
         }
     }
 }
