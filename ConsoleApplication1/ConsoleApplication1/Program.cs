@@ -1,79 +1,64 @@
-using System.Collections.Generic;
+using System;
 
-public class Program
+namespace MainSolution
 {
-
-    static void Main(string[] args)
-    {
-        foreach (var item in SearchString("abbcddddcccaaaddcc", "ddcc"))
+	class Program
+	{
+        // Function print matrix in spiral form
+        static void spiralPrint(int[,] matrix)
         {
-            System.Console.Write(item + " ");
-        }
-        //System.Console.WriteLine(SearchString("tasnuj", "as"));
-    }
+            int k = 0;
+            int m = matrix.GetUpperBound(0); // row end position
+            int l = 0;
+            int n = matrix.GetUpperBound(1); // column end position
 
-    public static int[] SearchString(string str, string pat)
-    {
-        List<int> retVal = new List<int>();
-        int M = pat.Length;
-        int N = str.Length;
-        int i = 0;
-        int j = 0;
-        int[] lps = new int[M];
-
-        ComputeLPSArray(pat, lps);
-
-        while (i < N)
-        {
-            if (pat[j] == str[i])
+            while (k <= m && l <= n)
             {
-                j++;
-                i++;
-            }
-
-            if (j == M)
-            {
-                retVal.Add(i - j);
-                j = lps[j - 1];
-            }
-
-            else if (i < N && pat[j] != str[i])
-            {
-                if (j != 0)
-                    j = lps[j - 1];
-                else
-                    i = i + 1;
-            }
-        }
-
-        return retVal.ToArray();
-    }
-
-    public static void ComputeLPSArray(string pat, int[] arr)
-    {
-        int len = arr.Length;
-        int i = 0;
-        int j = 1;
-        while (j < len)
-        {
-            if (pat[i] == pat[j])
-            {
-                i++; // length of previous longest prefix
-                arr[j] = i;
-                j++;
-            }
-            else
-            {
-                if (i != 0)
+                // Print first row.
+                for (int i = l; i <= n; i++)
                 {
-                    i = arr[j - 1];
-
+                    Console.Write(matrix[k, i] + " ");
                 }
+                k++;
+                // Print last column
+                for (int i = k; i <= m; i++)
                 {
-                    arr[j] = 0;
-                    j++;
+                    Console.Write(matrix[i, n] + " ");
                 }
+                n--;
+                if (k <= m)
+                {
+                    // Print last row
+                    for (int i = n; i >= l; i--)
+                    {
+                        Console.Write(matrix[m, i] + " ");
+                    }
+                    m--;
+                }
+                if (l <= n)
+                {
+                    for (int i = m; i >= k; i--)
+                    {
+                        Console.Write(matrix[i, l] + " ");
+                    }
+                    l++;
+                }
+
             }
         }
-    }
+
+        // Driver program
+        public static void Main()
+		{
+			int R = 3;
+			int C = 6;
+			int[,] a = { {1, 2, 3, 4, 5, 6},
+					{7, 8, 9, 10, 11, 12},
+					{13, 14, 15, 16, 17, 18}
+					};
+			spiralPrint(a);
+
+
+		}
+	}
 }
