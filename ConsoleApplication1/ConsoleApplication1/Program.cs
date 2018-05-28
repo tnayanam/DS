@@ -1,21 +1,15 @@
 using System;
-
+// Convert character 1 to actual value as 1
 namespace MainSolution
 {
     class Program
     {
         public static void Main()
         {
-            int num = 24;
-            for (int i = 1; i <= num / 2; i++)
-            {
-                if ((i * i) <= num && (i + 1) * (i + 1) > num)
-                {
-                    Console.Write(i);
-                    break;
-                }
-            }
+            char t = '1';
+            Console.WriteLine(Convert.ToInt32(t)); // 49 -- Ascii value 
+            int res = t - '0';
+            Console.WriteLine(res); // 0 is 48 so 49-48 = 1
         }
     }
 }
-// 75 is same as Dutch Flag segregate 0,1,2
