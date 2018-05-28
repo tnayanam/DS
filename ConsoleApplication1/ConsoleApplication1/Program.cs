@@ -1,35 +1,27 @@
-using System;
-
 namespace MainSolution
 {
     class Program
     {
         public static void Main()
         {
-
-            int[] arr = new int[] { 9, 9, 9 };
-            var newArr = PlusOne(arr);
-
-            foreach (var item in newArr)
-            {
-                Console.Write(item);
-            }
+            int[,] matrix = new int[,]{
+            {1,2,3},
+            {4,5,6},
+            {7,8,9}
+            };
+            int rows = matrix.GetLength(0);
+            int columns = matrix.GetLength(1);
+            System.Console.WriteLine(NoOfPaths(rows, columns));
         }
-        public static int[] PlusOne(int[] digits)
+
+        public static int NoOfPaths(int rows, int columns)
         {
-            int carry = 1;
-            for (int i = digits.Length - 1; i >= 0; i--)
-            {
-                int digit = (digits[i] + carry) % 10;
-                 carry = (digits[i] + carry) / 10;
-                digits[i] = digit;
-                if (carry == 0)
-                    return digits;
-            }
-
-            int[] res = new int[digits.Length + 1];
-            res[0] = 1;
-            return res;
-        }
+            if (rows == 1 || columns == 1)
+                return 1;
+            else
+                return NoOfPaths(rows, columns - 1) + NoOfPaths(rows - 1, columns);
         }
     }
+}
+
+// movement can only be right and down NO DIAGONALLY
