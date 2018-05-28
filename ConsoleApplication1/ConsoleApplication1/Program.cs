@@ -6,21 +6,29 @@ namespace MainSolution
 	{
         public static void Main()
 		{
-            // Can Jump
-            // Could not understand properly
-            int[] arr = new int[] {  3, 2, 1, 0, 4};
-
-            int reach = 0;
-
-            for (int i = 0; i <= reach && i < arr.Length; i++)
+            string str = "tanuj is a good boys    ";
+            bool spaceFound = false;
+            str = str.Trim();
+            int i = 0;
+            int j = 0;
+            while (i < str.Length)
             {
-                reach = Math.Max(arr[i] + i, reach);
+                if (str[i] == ' ')
+                {
+                    spaceFound = true;
+                }
+                else
+                {
+                    if (spaceFound)
+                    {
+                        spaceFound = false;
+                        j = i;
+                    }
+                }
+                i++;
             }
 
-            if (reach < arr.Length - 1)
-                Console.WriteLine("NO");
-            else
-                Console.WriteLine("YES");
+            Console.WriteLine(i - j);
 
         }
     }
