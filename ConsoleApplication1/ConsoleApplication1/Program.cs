@@ -19,9 +19,9 @@ namespace MainSolution
             if (rows == 1 || columns == 1)
                 return 1;
             else
-                return NoOfPaths(rows, columns - 1) + NoOfPaths(rows - 1, columns);
+                return NoOfPaths(rows, columns - 1) + NoOfPaths(rows - 1, columns) + NoOfPaths(rows - 1, columns - 1);
         }
     }
 }
 
-// movement can only be right and down NO DIAGONALLY
+// movement can only be right and down and Diagonally
