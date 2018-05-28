@@ -8,27 +8,9 @@ namespace MainSolution
 		{
             string str = "tanuj is a good boys    ";
             bool spaceFound = false;
-            str = str.Trim();
-            int i = 0;
-            int j = 0;
-            while (i < str.Length)
-            {
-                if (str[i] == ' ')
-                {
-                    spaceFound = true;
-                }
-                else
-                {
-                    if (spaceFound)
-                    {
-                        spaceFound = false;
-                        j = i;
-                    }
-                }
-                i++;
-            }
+            string[] strArr = str.Trim().Split(' ');
+            Console.WriteLine(strArr[strArr.Length - 1].Length);
 
-            Console.WriteLine(i - j);
 
         }
     }
