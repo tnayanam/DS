@@ -1,31 +1,64 @@
-using System;
 namespace MainSolution
 {
     class Program
     {
         public static void Main()
         {
-            string str1 = "11";
-            string str2 = "11";
-            Console.WriteLine(AddBinary(str1, str2));
-        }
-        public static string AddBinary(string str1, string str2)
-        {
-            string res = "";
-            int carryOver = 0;
-            int i1 = str1.Length - 1;
-            int j1 = str2.Length - 1;
-            while(i1>=0 || j1>=0 || carryOver == 1)
+            char[,] matrix = new char[,]
             {
-                carryOver += ((i1 >= 0) ? str1[i1] - '0' : 0);
-                carryOver += ((j1 >= 0) ? str2[j1] - '0' : 0);
-               // for 1 and 3 we need below, for TWO res will be zero but carryOver will be 1. 
-                res = (char)(carryOver % 2 + '0') + res; // again converting the integer to actgual ASCII value and then converting it to character
-                // basically we got integer 1 and we need to convert it to character 1. and ascii value for charaqcter 1 in 49. 
-                carryOver = carryOver / 2; // because for 1 it will be 0 for 3 and 2 it will be 1;
-                i1--;j1--;
+                {'G','E','E','K','S', 'F', 'O', 'R', 'G', 'E', 'E', 'K', 'S'},
+                { 'G','E','E','K','S','Q','U','I','Z','G','E','E','K'},
+                {'I','D','E','Q','A','P','R','A','C','T','I','C','E'}
+            };
+            PatternSearch(matrix, "EEE");
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    System.Console.Write(matrix[i, j] + " ");
+                }
+                System.Console.WriteLine();
             }
-            return res;
+        }
+        public static void PatternSearch(char[,] matrix, string word)
+        {
+            for (int row = 0; row < matrix.GetLength(0); row++)
+            {
+                for (int col = 0; col < matrix.GetLength(1); col++)
+                {
+                    if (Search2D(matrix, row, col, word))
+                    {
+                        System.Console.WriteLine("Pattern found at " + row + " " + col);
+                    }
+                }
+            }
+        }
+        public static bool Search2D(char[,] matrix, int row, int col, string word)
+        {
+            int[] x = new int[] { -1, -1, -1, 0, 0, 1, 1, 1 };
+            int[] y = new int[] { -1, 0, 1, -1, 1, -1, 0, 1 };
+            if (matrix[row, col] != word[0])
+                return false;
+            int len = word.Length;
+            for (int dir = 0; dir < 8; dir++)
+            {
+                // Initialize starting point for current direction  
+                int k, rd = row + x[dir], cd = col + y[dir];
+                for (k = 1; k < len; k++)
+                {
+                    if (rd >= row || rd < 0 || cd >= col || cd < 0)
+                        break;
+                    if (matrix[rd, cd] != word[k])
+                        break;
+                    rd += x[dir];
+                    cd += y[dir];
+                }
+                // If all character matched, then value of must
+                // be equal to length of word
+                if (k == len)
+                    return true;
+            }
+            return false;
         }
     }
 }
