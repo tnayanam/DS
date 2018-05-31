@@ -46,7 +46,7 @@ namespace MainSolution
                 int k, rd = row + x[dir], cd = col + y[dir];
                 for (k = 1; k < len; k++)
                 {
-                    if (rd >= row || rd < 0 || cd >= col || cd < 0)
+                    if (rd >= matrix.GetLength(0) || rd < 0 || cd >= matrix.GetLength(1) || cd < 0)
                         break;
                     if (matrix[rd, cd] != word[k])
                         break;
