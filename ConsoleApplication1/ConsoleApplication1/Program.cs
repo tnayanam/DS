@@ -30,7 +30,34 @@ namespace MainSolution
             {
                 root.left = Insert(root.left, data);
             }
-            return root; // this is important
+            return root;
+        }
+
+        public void PreOrder(BstNode root)
+        {
+            if (root == null)
+                return;
+            System.Console.Write(root.data + " ");
+            PreOrder(root.left);
+            PreOrder(root.right);
+        }
+
+        public void InOrder(BstNode root)
+        {
+            if (root == null)
+                return;
+            InOrder(root.left);
+            System.Console.Write(root.data + " ");
+            InOrder(root.right);
+        }
+
+        public void PostOrder(BstNode root)
+        {
+            if (root == null)
+                return;
+            PostOrder(root.left);
+            PostOrder(root.right);
+            System.Console.Write(root.data + " ");
         }
     }
 
@@ -47,6 +74,14 @@ namespace MainSolution
             root = bstTree.Insert(root, 15);
             root = bstTree.Insert(root, 11);
             root = bstTree.Insert(root, 6);
+            System.Console.WriteLine("PostOrder");
+            bstTree.PostOrder(root);
+            System.Console.WriteLine();
+            System.Console.WriteLine("PreOrder");
+            bstTree.PreOrder(root);
+            System.Console.WriteLine();
+            System.Console.WriteLine("InOrder");
+            bstTree.InOrder(root);
         }
     }
 }
