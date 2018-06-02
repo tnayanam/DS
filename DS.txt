@@ -34,3 +34,62 @@ SortedDictionary
 In a SortedDictionary elements must be sorted when they are added, making insertion times slower.
 
 But since elements are kept stored, searching can be done with binary search, meaning searching is faster.hmm
+
+
+How to decided which data strcuture to use
+1. cost of operations
+2. Memory Usage
+3. What needs to be stored
+Tree is a non linear data structure
+top most node is called root of the tree
+each node contains some data and may contain link and refernce to some other node which are called children
+node with no child are called leaf nodes
+tree is a recursive data structure
+tree ios used when we have heirarchical data structure
+a trss iwth n node has n-1 links because root does not have any incoming links
+
+              1                     depth = 0
+			  
+     2                  3           depth = 1   height = 2 because the longest edge is from 8->6->7 it is not 1 which is from 7->3
+
+4	     5         6          7     depth = 2
+
+                 8
+
+depth -> number of edges to reach that node from root.
+height -> number of edges in longest path root to leaf
+height of tree is same as height of root
+depth and height can be or cannot be equal.
+Binary tree is a tree with atmost 2 children
+maximum number of nodes at any given level i us 2^i i is the depth here
+height of empty tree = -1
+height of tree with 1 node = 0
+
+if maximum diff at any node is <=1 then it is a balanced binary tree if not then not balanced.
+
+Binary Search Tree
+why trees:  suppose we want to search, insert and delete a data what DS we should use
+option 1: array
+Search - O(n)
+Insert - O(1)
+Removal - O(n)
+option 2: LL
+Search - O(n)
+Insert - O(1)
+Removal - O(n)
+Array Sorted
+Search - O(logn)
+Insert - O(n)
+Removal - O(n)
+BST- Good
+Search - O(logn)
+Insert - O(logn)
+Removal - O(logn)
+BST: A tree in which value of node of left subtree is lesser or equal than value of node in right subtree 
+
+
+
+
+
+
+
