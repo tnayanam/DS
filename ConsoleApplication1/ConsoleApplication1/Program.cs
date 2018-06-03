@@ -39,7 +39,7 @@ namespace MainSolution
                 return -1;
             if (root.right == null)
                 return root.data;
-           return FindMax(root.right);
+            return FindMax(root.right);
         }
 
         public int FindMin(BstNode root)
@@ -77,6 +77,19 @@ namespace MainSolution
             PostOrder(root.right);
             System.Console.Write(root.data + " ");
         }
+
+        public bool Contains(BstNode root, int data)
+        {
+            if (root == null)
+                return false;
+            if (data > root.data)
+                return Contains(root.right, data);
+            else if (data < root.data)
+                return Contains(root.left, data);
+            else
+                return true;
+
+        }
     }
 
     class Program
@@ -104,6 +117,9 @@ namespace MainSolution
             System.Console.WriteLine("Max element is: " + bstTree.FindMax(root));
             System.Console.WriteLine();
             System.Console.WriteLine("Min element is: " + bstTree.FindMin(root));
+            System.Console.WriteLine();
+
+            System.Console.WriteLine(bstTree.Contains(root, 15));
         }
     }
 }
