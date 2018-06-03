@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace MainSolution
 {
     // we always need the address of the Root Node come what may!!!!!
@@ -14,6 +16,7 @@ namespace MainSolution
 
     public class BstTree
     {
+        // For BST
         public BstNode Insert(BstNode root, int data)
         {
             if (root == null)
@@ -33,6 +36,7 @@ namespace MainSolution
             return root;
         }
 
+        // For BST
         public int FindMax(BstNode root)
         {
             if (root == null)
@@ -42,6 +46,7 @@ namespace MainSolution
             return FindMax(root.right);
         }
 
+        // For BST
         public int FindMin(BstNode root)
         {
             if (root == null)
@@ -51,6 +56,7 @@ namespace MainSolution
             return FindMin(root.left);
         }
 
+        // For Binary Tree
         public void PreOrder(BstNode root)
         {
             if (root == null)
@@ -60,6 +66,7 @@ namespace MainSolution
             PreOrder(root.right);
         }
 
+        // For Binary Tree
         public void InOrder(BstNode root)
         {
             if (root == null)
@@ -69,6 +76,7 @@ namespace MainSolution
             InOrder(root.right);
         }
 
+        // For Binary Tree
         public void PostOrder(BstNode root)
         {
             if (root == null)
@@ -78,6 +86,7 @@ namespace MainSolution
             System.Console.Write(root.data + " ");
         }
 
+        // For BST
         public bool Contains(BstNode root, int data)
         {
             if (root == null)
@@ -89,6 +98,23 @@ namespace MainSolution
             else
                 return true;
 
+        }
+        // For Binary Tree
+        public void LevelOrderTraversal(BstNode root)
+        {
+            Queue<BstNode> q1 = new Queue<BstNode>();
+
+            if (root == null)
+                return;
+            q1.Enqueue(root);
+            while (q1.Count != 0)
+            {
+                BstNode node = q1.Peek();
+                System.Console.Write(node.data + " ");
+                if (node.left != null) q1.Enqueue(node.left);
+                if (node.right != null) q1.Enqueue(node.right);
+                q1.Dequeue();
+            }
         }
     }
 
@@ -118,8 +144,9 @@ namespace MainSolution
             System.Console.WriteLine();
             System.Console.WriteLine("Min element is: " + bstTree.FindMin(root));
             System.Console.WriteLine();
-
             System.Console.WriteLine(bstTree.Contains(root, 15));
+            System.Console.WriteLine();
+            bstTree.LevelOrderTraversal(root);
         }
     }
 }
