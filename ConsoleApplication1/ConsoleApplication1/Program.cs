@@ -8,7 +8,7 @@ namespace MainSolution
     // we always need the address of the Root Node come what may!!!!!
     public class BstNode
     {
-        public int data { get; }
+        public int data { get; set; }
         public BstNode left { get; set; }
         public BstNode right { get; set; }
         public BstNode(int value)
@@ -50,6 +50,16 @@ namespace MainSolution
         }
 
         // For BST
+        public BstNode FindMinNode(BstNode root)
+        {
+            if (root == null)
+                return null;
+            if (root.left == null)
+                return root;
+            return FindMinNode(root.left);
+        }
+
+        // For BST
         public int FindMin(BstNode root)
         {
             if (root == null)
@@ -59,6 +69,7 @@ namespace MainSolution
             return FindMin(root.left);
         }
 
+        //This is called Depth First Traversal
         // For Binary Tree
         public void PreOrder(BstNode root)
         {
@@ -69,6 +80,7 @@ namespace MainSolution
             PreOrder(root.right);
         }
 
+        // This is called Depth First Traversal
         // For Binary Tree
         public void InOrder(BstNode root)
         {
@@ -79,6 +91,7 @@ namespace MainSolution
             InOrder(root.right);
         }
 
+        // This is called Depth First Traversal
         // For Binary Tree
         public void PostOrder(BstNode root)
         {
@@ -103,6 +116,47 @@ namespace MainSolution
 
         }
 
+        // For BST
+        // Deletion of node and then making it BST again
+        public BstNode Delete(BstNode root, int numToDelete)
+        {
+            if (root == null)
+                return null;
+            if (numToDelete > root.data)
+                root.right = Delete(root.right, numToDelete);
+            else if (numToDelete < root.data)
+                root.left = Delete(root.left, numToDelete);
+            else // number is found now delete it
+            {
+                // case 1: // No Child
+                if (root.right == null && root.left == null)
+                {
+                    root = null;
+                }
+                // only left child
+                else if (root.right == null)
+                {
+                    BstNode temp = root;
+                    root = root.left;
+                    temp = null;
+                }
+                // only right child
+                else if (root.left == null)
+                {
+                    BstNode temp = root;
+                    root = root.right;
+                    temp = null;
+                }
+                else
+                {
+                    BstNode temp = FindMinNode(root.right);
+                    root.data = temp.data;
+                    root.right = Delete(root.right, temp.data);
+                }
+            }
+            return root;
+        }
+
         // For Binary Tree
         public int GetHeight(BstNode root)
         {
@@ -113,6 +167,7 @@ namespace MainSolution
             return Math.Max(leftHeight, rightHeight) + 1;
         }
 
+        // This is called Breadth First Traversal
         // For Binary Tree
         public void LevelOrderTraversal(BstNode root)
         {
@@ -229,6 +284,10 @@ namespace MainSolution
             root = bstTree.Insert(root, 11);
             root = bstTree.Insert(root, 6);
             root = bstTree.Insert(root, 3);
+            root = bstTree.Insert(root, 2);
+            root = bstTree.Insert(root, 13);
+            root = bstTree.Insert(root, 23);
+            root = bstTree.Insert(root, 9);
             System.Console.WriteLine("PostOrder");
             bstTree.PostOrder(root);
             System.Console.WriteLine();
@@ -252,7 +311,26 @@ namespace MainSolution
             System.Console.WriteLine();
             bstTree.traverseSpiral(root);
             System.Console.WriteLine();
-            Console.WriteLine(  "Height is: " + bstTree.GetHeight(root));
+            Console.WriteLine("Height is: " + bstTree.GetHeight(root));
+            System.Console.WriteLine();
+            bstTree.Delete(root, 2); // no child
+            System.Console.WriteLine("InOrder - removed 2");
+            bstTree.InOrder(root);
+            bstTree.Delete(root, 23); // no child
+            System.Console.WriteLine("InOrder - removed 23");
+            bstTree.InOrder(root);
+            bstTree.Delete(root, 12); // both child
+            System.Console.WriteLine("InOrder - removed 12");
+            bstTree.InOrder(root);
+            bstTree.Delete(root, 15); // left child
+            System.Console.WriteLine("InOrder - removed 15");
+            bstTree.InOrder(root);
+            bstTree.Delete(root, 7); // both child
+            System.Console.WriteLine("InOrder - removed 7");
+            bstTree.InOrder(root);
+            bstTree.Delete(root, 10); // both child and root
+            System.Console.WriteLine("InOrder - removed 10");
+            bstTree.InOrder(root);
         }
     }
 }
