@@ -33,6 +33,24 @@ namespace MainSolution
             return root;
         }
 
+        public int FindMax(BstNode root)
+        {
+            if (root == null)
+                return -1;
+            if (root.right == null)
+                return root.data;
+           return FindMax(root.right);
+        }
+
+        public int FindMin(BstNode root)
+        {
+            if (root == null)
+                return -1;
+            if (root.left == null)
+                return root.data;
+            return FindMin(root.left);
+        }
+
         public void PreOrder(BstNode root)
         {
             if (root == null)
@@ -82,6 +100,10 @@ namespace MainSolution
             System.Console.WriteLine();
             System.Console.WriteLine("InOrder");
             bstTree.InOrder(root);
+            System.Console.WriteLine();
+            System.Console.WriteLine("Max element is: " + bstTree.FindMax(root));
+            System.Console.WriteLine();
+            System.Console.WriteLine("Min element is: " + bstTree.FindMin(root));
         }
     }
 }
