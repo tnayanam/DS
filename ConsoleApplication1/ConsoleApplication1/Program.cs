@@ -134,6 +134,46 @@ namespace MainSolution
             else
                 return false;
         }
+
+        // For Binary Tree
+        public void ZigZagTraversal(BstNode root)
+        {
+            if (root == null)
+                return;
+            Stack<BstNode> Curr = new Stack<BstNode>();
+            Stack<BstNode> Nxt = new Stack<BstNode>();
+            bool leftToRight = true;
+            Curr.Push(root);
+            while (Curr.Count != 0)
+            {
+                BstNode b1 = Curr.Peek();
+                Curr.Pop();
+                if (b1 != null)
+                {
+                    Console.Write(b1.data + " ");
+                    if (leftToRight)
+                    {
+                        if (b1.left != null)
+                            Nxt.Push(b1.left);
+                        if (b1.right != null)
+                            Nxt.Push(b1.right);
+                    }
+                    else
+                    {
+                        if (b1.right != null)
+                            Nxt.Push(b1.right);
+                        if (b1.left != null)
+                            Nxt.Push(b1.left);
+                    }
+                }
+                if (Curr.Count == 0)
+                {
+                    leftToRight = !leftToRight;
+                    Curr = Nxt;
+                    Nxt = new Stack<BstNode>();
+                }
+            }
+        }
     }
 
     class Program
@@ -167,6 +207,8 @@ namespace MainSolution
             bstTree.LevelOrderTraversal(root);
             System.Console.WriteLine();
             Console.WriteLine(bstTree.IsBinarySearchTree(root));
+            System.Console.WriteLine();
+            bstTree.ZigZagTraversal(root);
         }
     }
 }
