@@ -102,6 +102,17 @@ namespace MainSolution
                 return true;
 
         }
+
+        // For Binary Tree
+        public int GetHeight(BstNode root)
+        {
+            if (root == null)
+                return -1; // height of empty tree
+            var leftHeight = GetHeight(root.left);
+            var rightHeight = GetHeight(root.right);
+            return Math.Max(leftHeight, rightHeight) + 1;
+        }
+
         // For Binary Tree
         public void LevelOrderTraversal(BstNode root)
         {
@@ -217,6 +228,7 @@ namespace MainSolution
             root = bstTree.Insert(root, 15);
             root = bstTree.Insert(root, 11);
             root = bstTree.Insert(root, 6);
+            root = bstTree.Insert(root, 3);
             System.Console.WriteLine("PostOrder");
             bstTree.PostOrder(root);
             System.Console.WriteLine();
@@ -238,8 +250,9 @@ namespace MainSolution
             System.Console.WriteLine();
             bstTree.ZigZagTraversal(root);
             System.Console.WriteLine();
-
             bstTree.traverseSpiral(root);
+            System.Console.WriteLine();
+            Console.WriteLine(  "Height is: " + bstTree.GetHeight(root));
         }
     }
 }
