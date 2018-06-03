@@ -136,6 +136,34 @@ namespace MainSolution
         }
 
         // For Binary Tree
+        public void traverseSpiral(BstNode root)
+        {
+            Stack<BstNode> st1 = new Stack<BstNode>();
+            Stack<BstNode> st2 = new Stack<BstNode>();
+            st1.Push(root);
+
+            while (st1.Count > 0 || st2.Count > 0)
+            {
+                while (st1.Count > 0)
+                {
+                    BstNode n = st1.Pop();
+                    Console.Write(n.data + " ");
+                    // IMP: order of insertion should be different in 2 stacks
+                    if (n.left != null) st2.Push(n.left);
+                    if (n.right != null) st2.Push(n.right);
+
+                }
+                while (st2.Count > 0)
+                {
+                    BstNode n = st2.Pop();
+                    Console.Write(n.data + " ");
+                    if (n.right != null) st1.Push(n.right);
+                    if (n.left != null) st1.Push(n.left);
+                }
+            }
+        }
+
+        // For Binary Tree
         public void ZigZagTraversal(BstNode root)
         {
             if (root == null)
@@ -209,6 +237,9 @@ namespace MainSolution
             Console.WriteLine(bstTree.IsBinarySearchTree(root));
             System.Console.WriteLine();
             bstTree.ZigZagTraversal(root);
+            System.Console.WriteLine();
+
+            bstTree.traverseSpiral(root);
         }
     }
 }
