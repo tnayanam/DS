@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+
+// Inorder Traversal of BST is always in increasing order
 
 namespace MainSolution
 {
@@ -116,6 +119,21 @@ namespace MainSolution
                 q1.Dequeue();
             }
         }
+
+        public bool IsBinarySearchTree(BstNode root)
+        {
+            return CheckBST(root, Int32.MinValue, Int32.MaxValue);
+        }
+
+        public bool CheckBST(BstNode root, int minValue, int maxValue)
+        {
+            if (root == null)
+                return true;
+            if (root.data > minValue && root.data < maxValue && CheckBST(root.left, minValue, root.data) && CheckBST(root.right, root.data, maxValue))
+                return true;
+            else
+                return false;
+        }
     }
 
     class Program
@@ -147,6 +165,8 @@ namespace MainSolution
             System.Console.WriteLine(bstTree.Contains(root, 15));
             System.Console.WriteLine();
             bstTree.LevelOrderTraversal(root);
+            System.Console.WriteLine();
+            Console.WriteLine(bstTree.IsBinarySearchTree(root));
         }
     }
 }
