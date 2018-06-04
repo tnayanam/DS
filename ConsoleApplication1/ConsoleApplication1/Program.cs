@@ -268,6 +268,32 @@ namespace MainSolution
                 }
             }
         }
+
+        public void LevelOrderTraverse(BstNode root)
+        {
+            if (root == null)
+                return;
+            Queue<BstNode> q1 = new Queue<BstNode>();
+            q1.Enqueue(root);
+            while (q1.Count != 0)
+            {
+                q1.Enqueue(root.left);
+                q1.Enqueue(root.right);
+                Console.WriteLine(q1.Dequeue());
+            }
+
+        }
+
+        public BstNode LowestCommonAncestor(BstNode root, int num1, int num2)
+        {
+            if (root == null)
+                return null;
+            if (num1 > root.data && num2 > root.data)
+                return LowestCommonAncestor(root.right, num1, num2);
+            else if (num1 < root.data && num2 < root.data)
+                return LowestCommonAncestor(root.left, num1, num2);
+            else return root;
+        }
     }
 
     class Program
@@ -288,49 +314,7 @@ namespace MainSolution
             root = bstTree.Insert(root, 13);
             root = bstTree.Insert(root, 23);
             root = bstTree.Insert(root, 9);
-            System.Console.WriteLine("PostOrder");
-            bstTree.PostOrder(root);
-            System.Console.WriteLine();
-            System.Console.WriteLine("PreOrder");
-            bstTree.PreOrder(root);
-            System.Console.WriteLine();
-            System.Console.WriteLine("InOrder");
-            bstTree.InOrder(root);
-            System.Console.WriteLine();
-            System.Console.WriteLine("Max element is: " + bstTree.FindMax(root));
-            System.Console.WriteLine();
-            System.Console.WriteLine("Min element is: " + bstTree.FindMin(root));
-            System.Console.WriteLine();
-            System.Console.WriteLine(bstTree.Contains(root, 15));
-            System.Console.WriteLine();
-            bstTree.LevelOrderTraversal(root);
-            System.Console.WriteLine();
-            Console.WriteLine(bstTree.IsBinarySearchTree(root));
-            System.Console.WriteLine();
-            bstTree.ZigZagTraversal(root);
-            System.Console.WriteLine();
-            bstTree.traverseSpiral(root);
-            System.Console.WriteLine();
-            Console.WriteLine("Height is: " + bstTree.GetHeight(root));
-            System.Console.WriteLine();
-            bstTree.Delete(root, 2); // no child
-            System.Console.WriteLine("InOrder - removed 2");
-            bstTree.InOrder(root);
-            bstTree.Delete(root, 23); // no child
-            System.Console.WriteLine("InOrder - removed 23");
-            bstTree.InOrder(root);
-            bstTree.Delete(root, 12); // both child
-            System.Console.WriteLine("InOrder - removed 12");
-            bstTree.InOrder(root);
-            bstTree.Delete(root, 15); // left child
-            System.Console.WriteLine("InOrder - removed 15");
-            bstTree.InOrder(root);
-            bstTree.Delete(root, 7); // both child
-            System.Console.WriteLine("InOrder - removed 7");
-            bstTree.InOrder(root);
-            bstTree.Delete(root, 10); // both child and root
-            System.Console.WriteLine("InOrder - removed 10");
-            bstTree.InOrder(root);
+            Console.WriteLine(bstTree.LowestCommonAncestor(root,9, 2).data);
         }
     }
 }
