@@ -11,7 +11,7 @@ public class LL
         Node prev = null;
         Node next = null;
         Node curr = root;
-        while(curr!=null)
+        while (curr != null)
         {
             next = curr.next;
             curr.next = prev;
@@ -26,13 +26,36 @@ public class LL
     {
         Node curr = root;
         Node next;
-        while(curr!=null)
+        while (curr != null)
         {
             next = curr.next;
             curr = null;
             curr = next;
         }
         return curr;
+    }
+
+    public Node Delete(Node root, int data)
+    {
+        Node temp = root;
+        Node prev = null;
+        if (root == null)
+            return null;
+        if (temp == root && temp.data == data)
+        {
+            return root.next;
+        }
+        while (temp != null && temp.data != data)
+        {
+            prev = temp;
+            temp = temp.next;
+        }
+
+        if (prev != null)
+        {
+            prev.next = temp.next;
+        }
+        return root;
     }
 
     public Node Insert(Node root, int num)
@@ -72,6 +95,9 @@ public class Program
         root = l1.Insert(root, 7);
         root = l1.Insert(root, 8);
         root = l1.Reverse(root);
-        root = l1.Delete(root);
+        root = l1.Reverse(root);
+        root = l1.Delete(root, 7);
+        root = l1.Delete(root, 1);
+        root = l1.Delete(root, 8);
     }
 }
