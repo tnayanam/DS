@@ -6,7 +6,6 @@ public class Node
 
 public class LL
 {
-
     public Node Reverse(Node root)
     {
         Node prev = null;
@@ -21,6 +20,19 @@ public class LL
         }
         root = prev;
         return root;
+    }
+
+    public Node Delete(Node root)
+    {
+        Node curr = root;
+        Node next;
+        while(curr!=null)
+        {
+            next = curr.next;
+            curr = null;
+            curr = next;
+        }
+        return curr;
     }
 
     public Node Insert(Node root, int num)
@@ -60,5 +72,6 @@ public class Program
         root = l1.Insert(root, 7);
         root = l1.Insert(root, 8);
         root = l1.Reverse(root);
+        root = l1.Delete(root);
     }
 }
