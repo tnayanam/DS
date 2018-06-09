@@ -1,4 +1,5 @@
-using System;
+using System.Collections.Generic;
+using System.Text;
 
 // 1 1 2 3 5 8 13 21 34 55 89
 namespace ConsoleApplication1
@@ -7,42 +8,45 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            Console.Write(CalcFib(6));
-            CalcSeries(6);
-            Console.WriteLine();
-            Console.WriteLine(FindNthNum(6));
-        }
-        public static int CalcFib(int num)
-        {
-            if (num <= 1)
-                return num;
-            return CalcFib(num - 1) + CalcFib(num - 2);
-        }
-        public static void CalcSeries(int num)
-        {
-            Console.WriteLine();
-            int sum = 0;
-            int n1 = 0;
-            int n2 = 1;
-            for (int i = 0; i < num; i++)
+            string str = "abc(ab)(a(abbc))ab";
+            string abc = "ABC(EF)(E(oppi))AB";
+            Stack<int> s1 = new Stack<int>();
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < str.Length; i++)
             {
-                Console.Write(n2 + " ");
-                sum = n1 + n2;
-                n1 = n2;
-                n2 = sum;
+                if (s1.Count == 0 && str[i] == 'a')
+                    sb.Append('A');
+                if (s1.Count == 0 && str[i] == 'b')
+                    sb.Append('B');
+                if (s1.Count == 0 && str[i] == 'c')
+                    sb.Append('C');
+                if (str[i] == '(')
+                {
+                    s1.Push('(');
+                }
+                if(s1.Count==1)
+                {
+                    if (str[i] == 'a')
+                        sb.Append('E');
+                    if (str[i] == 'b')
+                        sb.Append('F');
+                }
+                if (str[i] == ')')
+                {
+                    s1.Pop();
+                }
+                if (s1.Count == 2)
+                {
+                    if (str[i] == 'a')
+                        sb.Append('o');
+                    if (str[i] == 'b')
+                        sb.Append('p');
+                    if (str[i] == 'c')
+                        sb.Append('i');
+                }
             }
-        }
-        // DP
-        public static int FindNthNum(int num)
-        {
-            int[] arr1 = new int[num + 2];
-            arr1[0] = 0;
-            arr1[1] = 1;
-            for (int i = 2; i <= num; i++)
-            {
-                arr1[i] = arr1[i - 1] + arr1[i - 2];
-            }
-            return arr1[num];
+            System.Console.WriteLine(sb);
+
         }
     }
 }
